@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "Common.h"
 #include "CustomCommandInfo.h"
 #include "CustomEventTime.h"
@@ -1442,9 +1442,9 @@ LOAD_GFX:
 		LoadBitmapA("Interface\\GFx\\skill_render.tga", 61546, GL_LINEAR, GL_CLAMP, 1, 0);
 		LoadBitmapA("Interface\\GFx\\winPet_I1.tga", 61545, GL_LINEAR, GL_CLAMP, 1, 0);
 		LoadBitmapA("Interface\\GFx\\item_pbtnbg.tga", 61547, GL_LINEAR, GL_CLAMP, 1, 0);
-		//-- Folder MacroUI
-		LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_Main.tga", 51550, GL_LINEAR, GL_CLAMP, 1, 0);//vieja
-		//pLoadImage("Interface\\GFx\\MacroUI\\MacroUI_I1.tga", 0xF3001, 0x2601, 0x2900, 1, 0);//nueva
+	//-- Folder MacroUI
+	//LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_Main.tga", 51550, GL_LINEAR, GL_CLAMP, 1, 0);//vieja
+	pLoadImage("Interface\\GFx\\MacroUI\\MacroUI_I1.tga", 0xF3001, 0x2601, 0x2900, 1, 0);//nueva
 
 
 		LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_BSetup.tga", 51546, GL_LINEAR, GL_CLAMP, 1, 0);
