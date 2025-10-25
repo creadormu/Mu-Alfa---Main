@@ -1,0 +1,110 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                        HIGH FPS MOD - QUICK REFERENCE                         ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ FPS MODE VALUES (LimitFPS)                                                    │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  40 = 26 FPS  (Default)    │  17 = 60 FPS  (Recommended) ✓                  │
+│  34 = 31 FPS               │  14 = 72 FPS                                    │
+│  32 = 33 FPS               │  10 = 100 FPS                                   │
+│  30 = 34 FPS               │   8 = 120 FPS (High Performance)                │
+│  25 = 40 FPS               │                                                  │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ FILES TO COPY TO CLIENT                                                       │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  ✓ glew32.dll              (Client root)                                     │
+│  ✓ VSyncLib.GLIB           (Client root)                                     │
+│  ✓ Main.dll                (Client root - Recompiled)                        │
+│  ✓ MainInfo.ini            (Client root - Updated)                           │
+│  ✓ Shaders/vertexshader.vs (Create Shaders folder)                           │
+│  ✓ Shaders/vertexfragment.fs                                                 │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ DIALOG CONTROLS                                                               │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  YES    →  60 FPS Mode  (LimitFPS = 17) ✓ Recommended                       │
+│  NO     →  40 FPS Mode  (LimitFPS = 40) - Default/Compatible                │
+│  CANCEL → 120 FPS Mode  (LimitFPS = 8)  - High Performance                  │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ MainInfo.ini SETTINGS                                                         │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  MonitorFPS = 1            Enable FPS display (0=OFF, 1=ON)                  │
+│  MonitorMS = 1             Enable MS display (0=OFF, 1=ON)                   │
+│  LimitFPS = 17             Default FPS (overridden by dialog)                │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ COMPILATION NOTES                                                             │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  1. Add FPSSelector.cpp to project                                            │
+│  2. Add FPSSelector.h to project                                              │
+│  3. Link OpenGL32.lib                                                         │
+│  4. Compile Main.dll                                                          │
+│  5. Copy output to client                                                     │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ CODE CHANGES                                                                  │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  File: Main/Main.cpp                                                          │
+│  Line 93:   #include "FPSSelector.h"                                          │
+│  Line 177:  gFPSSelector.ShowFPSDialog();                                     │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ NEW FILES CREATED                                                             │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  Main/FPSSelector.h                  - Header file (class definition)        │
+│  Main/FPSSelector.cpp                - Implementation (dialog + shaders)     │
+│  Shaders/vertexshader.vs             - Vertex shader (GLSL 1.20)             │
+│  Shaders/vertexfragment.fs           - Fragment shader (GLSL 1.20)           │
+│  MainInfo.ini                        - Updated configuration                 │
+│  INSTALL_GUIDE.txt                   - Installation instructions             │
+│  CHANGES_SUMMARY.md                  - Complete implementation summary       │
+│  QUICK_REFERENCE.txt                 - This file                             │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING                                                               │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  Problem: No dialog appears                                                   │
+│  → Check Main.dll version, verify MainInfo.ini exists                         │
+│                                                                               │
+│  Problem: Still 26 FPS                                                        │
+│  → Copy glew32.dll and VSyncLib.GLIB to client folder                         │
+│                                                                               │
+│  Problem: Graphics errors                                                     │
+│  → Update GPU drivers, check OpenGL 2.0+ support                              │
+│                                                                               │
+│  Problem: Low FPS at 120 mode                                                 │
+│  → Use 60 FPS mode, update drivers, close background apps                     │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ SHADER INFO                                                                   │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  Language: GLSL 1.20 (OpenGL 2.0+)                                            │
+│  Vertex Shader: Transforms vertices, passes tex coords and colors            │
+│  Fragment Shader: Samples textures, clamps light, outputs final color        │
+│  Features: Enhanced rendering, light clamping, optimized blending            │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ TECHNICAL DETAILS                                                             │
+├───────────────────────────────────────────────────────────────────────────────┤
+│  Frame Time Calculation: 1000ms / LimitFPS = Frame Time                       │
+│  Example: 1000ms / 17 ≈ 58.8ms ≈ ~60 FPS                                     │
+│  Frame Limiter: HackCheck.cpp (lines 137-150)                                 │
+│  FPS Monitor: Interface.cpp (UPDATE_FPS function)                             │
+│  VSync: wglSwapIntervalEXT (dynamically loaded)                               │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  RECOMMENDED SETUP: 60 FPS mode (LimitFPS=17) with VSync enabled             ║
+╚═══════════════════════════════════════════════════════════════════════════════╝

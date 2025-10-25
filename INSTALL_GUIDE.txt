@@ -1,0 +1,149 @@
+═══════════════════════════════════════════════════════════════════════════════
+  HIGH FPS MOD - INSTALLATION GUIDE
+  60 FPS / 120 FPS Support with OpenGL Shader Enhancement
+═══════════════════════════════════════════════════════════════════════════════
+
+REQUIREMENTS:
+═════════════
+- glew32.dll (OpenGL Extension Wrangler Library)
+- VSyncLib.GLIB (VSync Control Library)
+- OpenGL 2.0+ Compatible Graphics Card
+
+INSTALLATION STEPS:
+═══════════════════
+1. COPY FILES TO CLIENT DIRECTORY:
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │ Copy the following files to your game client root folder:              │
+   │                                                                         │
+   │ - glew32.dll                (OpenGL Extensions)                        │
+   │ - VSyncLib.GLIB             (VSync Control)                            │
+   │ - Main.dll                  (Updated client with FPS selector)         │
+   │ - MainInfo.ini              (Updated configuration)                    │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+2. CREATE SHADERS FOLDER:
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │ Create a "Shaders" folder in your client root directory and copy:     │
+   │                                                                         │
+   │ Shaders\                                                                │
+   │   ├── vertexshader.vs       (Vertex Shader - GLSL 1.20)               │
+   │   └── vertexfragment.fs     (Fragment Shader - GLSL 1.20)             │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+3. CONFIGURE MainInfo.ini:
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │ Edit MainInfo.ini and ensure these settings:                           │
+   │                                                                         │
+   │ MonitorFPS = 1              (Enable FPS monitoring)                    │
+   │ MonitorMS = 1               (Enable MS monitoring)                     │
+   │ LimitFPS = 17               (Default to 60 FPS mode)                   │
+   │                                                                         │
+   │ Note: LimitFPS will be overridden by the dialog selection on startup  │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+4. LAUNCH THE GAME:
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │ When you start the game, a dialog box will appear asking you to       │
+   │ select your preferred FPS mode:                                        │
+   │                                                                         │
+   │ [YES]    = 60 FPS  (Recommended - Smooth gameplay)                    │
+   │ [NO]     = 40 FPS  (Default - Best compatibility)                     │
+   │ [CANCEL] = 120 FPS (High Performance - Requires powerful GPU)         │
+   │                                                                         │
+   │ OpenGL Shaders will be automatically loaded for enhanced graphics     │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+DIRECTORY STRUCTURE:
+════════════════════
+Your client folder should look like this:
+
+    YourClient\
+    ├── Main.exe
+    ├── Main.dll            <-- UPDATED
+    ├── MainInfo.ini        <-- UPDATED
+    ├── glew32.dll          <-- NEW (OpenGL Extensions)
+    ├── VSyncLib.GLIB       <-- NEW (VSync Control)
+    ├── Shaders\            <-- NEW FOLDER
+    │   ├── vertexshader.vs
+    │   └── vertexfragment.fs
+    ├── Data\
+    └── ... (other files)
+
+FPS MODE VALUES:
+════════════════
+┌──────────────┬──────────────┬─────────────────────────────────────────────┐
+│ LimitFPS     │ Actual FPS   │ Description                                 │
+├──────────────┼──────────────┼─────────────────────────────────────────────┤
+│ 40           │ ~26 FPS      │ Original default (maximum compatibility)    │
+│ 34           │ ~31 FPS      │ Slightly improved                           │
+│ 32           │ ~33 FPS      │ Better smoothness                           │
+│ 30           │ ~34 FPS      │ Smoother                                    │
+│ 25           │ ~40 FPS      │ Enhanced smoothness                         │
+│ 17           │ ~60 FPS      │ RECOMMENDED - Smooth and responsive         │
+│ 14           │ ~72 FPS      │ Very smooth                                 │
+│ 10           │ ~100 FPS     │ High performance                            │
+│ 8            │ ~120 FPS     │ Maximum performance (requires good GPU)     │
+└──────────────┴──────────────┴─────────────────────────────────────────────┘
+
+FEATURES:
+═════════
+✓ Interactive FPS selection dialog on startup
+✓ OpenGL 2.0 Shader support (GLSL 1.20)
+✓ VSync control for smooth rendering
+✓ Enhanced graphics with fragment and vertex shaders
+✓ Real-time FPS monitoring
+✓ Compatible with original game features
+✓ No performance penalty when using 60 FPS mode
+✓ Optimized rendering pipeline
+
+OPENGL SHADER FEATURES:
+═══════════════════════
+The included shaders provide:
+- Enhanced vertex processing
+- Improved texture sampling
+- Light color clamping for consistent brightness
+- Optimized fragment calculations
+- Better color blending
+
+TROUBLESHOOTING:
+════════════════
+Problem: Dialog doesn't appear
+Solution: Make sure Main.dll is in the correct directory and MainInfo.ini is configured properly
+
+Problem: FPS still locked at 26
+Solution: 
+  1. Check that glew32.dll and VSyncLib.GLIB are in the client folder
+  2. Verify Shaders folder exists with both .vs and .fs files
+  3. Try running as Administrator
+
+Problem: Graphics look wrong
+Solution:
+  1. Update your graphics drivers
+  2. Ensure your GPU supports OpenGL 2.0+
+  3. Check shader files are not corrupted
+
+Problem: Low performance at 120 FPS
+Solution: 
+  1. Select 60 FPS mode instead (recommended for most systems)
+  2. Update graphics drivers
+  3. Close background applications
+  4. Enable VSync in MainInfo.ini
+
+NOTES:
+══════
+• The FPS selector dialog appears ONCE when the game starts
+• Your selection is applied for that session
+• Shaders are automatically loaded when available
+• VSync is automatically enabled when supported
+• FPS monitoring can be toggled in MainInfo.ini (MonitorFPS = 0/1)
+
+COMPATIBILITY:
+══════════════
+✓ Windows 7/8/10/11
+✓ OpenGL 2.0+ Compatible GPUs
+✓ NVIDIA, AMD, Intel HD Graphics
+✓ Works with all game seasons
+
+═══════════════════════════════════════════════════════════════════════════════
+For support or questions, contact your server administrator
+═══════════════════════════════════════════════════════════════════════════════

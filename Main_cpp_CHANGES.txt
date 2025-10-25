@@ -1,0 +1,63 @@
+═══════════════════════════════════════════════════════════════════════════════
+MANUAL CHANGES REQUIRED FOR Main/Main.cpp
+═══════════════════════════════════════════════════════════════════════════════
+
+CHANGE 1: Add FPSSelector include
+═══════════════════════════════════
+
+Location: After line 92 (#include "AutoLoginWin.h")
+Action: ADD the following line:
+
+#include "FPSSelector.h"
+
+Result:
+--------
+#include "GuildLogo.h"
+#include "LoginMainWin.h"
+#include "AutoLoginWin.h"
+#include "FPSSelector.h"      ← ADD THIS LINE
+
+HINSTANCE hins;
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CHANGE 2: Add FPS Dialog Call
+═══════════════════════════════════
+
+Location: After line 174 (after ReadPetEffectBMD block, before //gInfoLog.Load();)
+Action: ADD the following lines:
+
+	// Show FPS Selection Dialog with OpenGL Shader Support
+	gFPSSelector.ShowFPSDialog();
+
+Result:
+--------
+	if(gProtect.ReadPetEffectBMD("Data\\Local\\EffectTRSData.bmd") == 0)
+	{
+		MessageBox(0,"Data\\Local\\EffectTRSData.bmd missing or File corrupt!","Error", MB_OK | MB_ICONERROR);
+		ExitProcess(0);
+	}
+	
+	// Show FPS Selection Dialog with OpenGL Shader Support   ← ADD THIS LINE
+	gFPSSelector.ShowFPSDialog();                             ← ADD THIS LINE
+		
+	//gInfoLog.Load();
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+SUMMARY OF CHANGES:
+═══════════════════════════════════════════════════════════════════════════════
+
+Total Lines Added: 3
+- 1 include statement
+- 2 lines for FPS selector initialization (1 comment + 1 function call)
+
+Files Modified: 1
+- Main/Main.cpp
+
+These changes integrate the FPS selector dialog into the game initialization
+sequence, allowing users to choose between 40, 60, and 120 FPS modes on startup.
+
+═══════════════════════════════════════════════════════════════════════════════
