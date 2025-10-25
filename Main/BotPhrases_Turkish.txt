@@ -1,0 +1,369 @@
+; BotPhrases.txt - Turkish (Türkçe)
+; Botların oyun sırasında söylediği cümleler
+; Format: #KATEGORİ, olasılık
+; Cümleler, her satırda bir tane
+; Saatte her kategoriden en az 1 cümle için optimize edilmiş olasılık sistemi
+
+; Dinamik kategoriler için temel olasılıklar
+#MAP_BASE_PROB,20
+#CLASS_BASE_PROB,15
+
+; --- GENEL KATEGORİLER ---
+#GENERAL,8
+Herkese iyi günler
+Merhaba topluluk
+Burada kimse var mı?
+Selamlar savaşçılar
+Nasıl gidiyor?
+Sıkı çalışıyorum
+Aksiyon arıyorum
+Herkes nasıl?
+Maceraya hazırım
+Buradayım ve hazırım
+
+#NEAR_REAL_PLAYER,18
+Merhaba arkadaş!
+Naber?
+Selamlar!
+Nasılsın?
+Selam!
+Her şey yolunda mı?
+Merhaba yoldaş
+Seni buraya ne getirdi?
+Görmek güzel
+Hoş geldin!
+
+#IN_PARTY,22
+Mükemmel parti!
+Hadi takım!
+Herkese iyi iş
+Böyle devam!
+Harika takım!
+Birlikte daha güçlüyüz
+Daha fazlasına hazır mısınız?
+Mükemmel, devam edelim
+Daha fazla EXP kazanalım
+İyi tempo çocuklar
+
+#PVP,28
+İyi dövüş!
+Bu yoğundu
+İyi savaş
+Güçlüsün!
+Harika muharebe
+Saygı savaşçı
+Etkileyici!
+Neredeyse beni yakaladın
+İyi düello
+Bu efsaneydi
+
+#TRADE,25
+{item_required} arıyorum, benimle takas yapın!
+{item_required} lazım, iyi anlaşma bekliyor!
+{item_required} {item_reward} karşılığında alıyorum!
+{item_required} -> {item_reward} takas yapıyorum!
+WTB: {item_required} = {item_reward}
+Kimde {item_required} var?
+{item_required} lazım, {item_reward} var!
+{item_required} aranıyor, {item_reward} teklif ediliyor!
+{item_required}'ınızı burada takas edin!
+Hızlı takas: {item_required} -> {item_reward}
+
+#MORNING,12
+Günaydın!
+Güne harika başlangıç
+Antrenman için mükemmel sabah
+Güne hazırım
+Enerji maksimumda
+
+#AFTERNOON,12
+İyi günler
+Verimli öğleden sonra
+Daha fazla antrenman zamanı
+Hala zaman var
+Enerjiyi yüksek tutalım
+
+#NIGHT,12
+İyi akşamlar
+Macera gecesi
+Gece genç
+Aksiyon zamanı
+Gece antrenmanı
+
+; --- SINIFA ÖZEL CÜMLELER ---
+#CLASS_0,15
+Nova yükleniyor! Kaçın nooblar!
+Asam saf güç, dostum.
+Evil Spirit mi Aquabeam mi? Ne ikilem.
+Büyülerim vahşi dostum!
+Teleport benim hobim, tamam mı?
+Ice Storm'umu hisset palyaço!
+Sihir kanımda.
+Meteor öfkeyle düşüyor!
+Yıkım alevi!
+Buz oku her şeyi donduruyor!
+
+#CLASS_16,15
+Kılıç darbesiyle dostum!
+Twisting Slash'im seni sersemletiyor!
+Bir kombo mu? Acıya hazır ol!
+Bu zırh bin savaş gördü.
+Bir BK asla geri çekilmez! Asla!
+Death Stab! Doğruca kalbe!
+Atım senin korkunden daha hızlı.
+Güç benim ikinci adım, hatırla!
+Dragon Slayer? Benim için çocuk oyuncağı!
+Efsanem her zaferle dövülüyor.
+
+#CLASS_32,15
+Oklarım asla hedefi ıskalamaz.
+Çeviklik benim gücüm.
+Multishot ateşlemeye hazır!
+Elf hassasiyeti benzersiz.
+Ice Arrow! Yerinde dondu!
+Ormandan adalet getiriyorum.
+Yayım zafer şarkısı söylüyor.
+Hız ve hassasiyet birleşti.
+Delici atış geliyor!
+Doğa oklarıma rehberlik ediyor.
+
+#CLASS_48,15
+Magic Gladiator aksiyona hazır!
+Kılıç ve sihir mükemmel uyumda.
+Sihirli güçle Twisting Slash!
+İki dünyanın en iyisi.
+Bıçağım enerjiyle çatırdıyor.
+Fire Slash keser ve yakar!
+Düellist sınıf, her zaman hazır.
+Cyclone her şeyi harap ediyor!
+Sihir güçlendirmeli Death Stab!
+Yakın dövüş büyücüsü hakimiyet kuruyor!
+
+#CLASS_64,15
+Dark Lord orduları komuta ediyor!
+Kuzgunum yukarıdan ölüm getiriyor.
+Fire Burst yolu temizliyor!
+Liderlik benim hediyem.
+Kritik hasar benim uzmanlığım.
+Karanlık at savaşa koşuyor!
+Güçlerini komuta et, düşmanlarını yok et!
+Fire Scream savaş alanında yankılanıyor!
+Karanlık ve güç lordu!
+Evcil hayvanlarım kirli işi yapıyor.
+
+#CLASS_80,15
+Summoner eski güçleri çağırıyor!
+Çağrılarım yanımda savaşıyor.
+Elementel güç patlaması!
+Sihir damarlarımdan akıyor.
+Meteor fırtınası yaklaşıyor!
+Büyü ustalığı zirvede.
+Eski sihir uyanıyor!
+Chain lightning herkesi vuruyor!
+Doğanın güçlerini çağırıyorum!
+Sihrim sınır tanımıyor.
+
+#CLASS_96,15
+Rage Fighter öfkeyi serbest bırakıyor!
+Yumruklarım zırhı kırıyor!
+Yakın dövüşte silah ustalığı!
+Dragon Roar dünyayı sarsıyor!
+Phoenix shot parlak yanıyor!
+Yakın dövüş uzmanı hazır!
+Muharebe uzmanlığı eşsiz.
+Elimde Dragon Slayer!
+Çift silah, çift hasar!
+Savaşçı ruhu asla ölmez!
+
+#CLASS_112,15
+Grow Lancer ileriye atılıyor!
+Mızrağım tüm savunmaları deler!
+Spiral Slash düşmanları harap ediyor!
+Atlı muharebe benim sanatım.
+Dragon Spear serbest kaldı!
+Krallığın şövalyesi!
+Tüm güçle dolduruyor!
+Mızrak darbesi kritik vuruş!
+Süvari hakimiyeti!
+Atım ve ben biriz.
+
+; --- HARITAYA ÖZEL CÜMLELER ---
+#MAP_0,20
+Lorencia, krallığın kalbi.
+Eğitim alanları her zaman dolu.
+Yolculuğunuza başlamak için huzurlu yer.
+Çeşme anıları geri getiriyor.
+Efsanelerin doğduğu yer burası.
+Lorencia'da ev gibisi yok.
+Kale duvarları hepimizi koruyor.
+Lorencia pazarı en iyisi.
+Buradan başlayan o kadar çok savaşçı.
+Her maceranın başlangıcı.
+
+#MAP_1,20
+Dungeon'a giriyorum... saygı gerekli.
+Burada aşağıda hava ağır ve eski.
+Geçmiş savaşların yankıları duyuluyor.
+Burada yanlış bir adım son olabilir.
+Güneş ışığı buraya ulaşmıyor.
+Bu koridorda tetikte olmalıyız.
+Duvarlardan karanlık enerji yayılıyor.
+Bu yer birçok maceracıyı aldı.
+Buradaki karanlık neredeyse elle tutulur.
+Dünyanın derinliklerine iniyorum.
+
+#MAP_2,20
+Devias, fırsatlar diyarı.
+Madenler büyük hazineler barındırıyor.
+Tehlikeli ama ödüllendirici bölge.
+Devler bu topraklarda dolaşıyor.
+Devias Meydanı her zaman kalabalık.
+Orta seviye antrenman için mükemmel.
+Burada PK'lere dikkat!
+Devias'ta zengin av alanları.
+Köprü iki dünyayı bağlıyor.
+Devias asla uyumaz.
+
+#MAP_3,20
+Noria, en sevdiğim yer.
+Liman şehrinin kendine has çekiciliği var.
+Deniz esintisi ve macera.
+Buradaki canavarlar sert.
+Noria pazarı eşsiz.
+Kıyı eğitim alanları.
+Deniz feneri yolu gösteriyor.
+Denizciler ve savaşçılar burada birleşiyor.
+Daha büyük zorluklara geçit.
+Noria'nın güzelliği eşsiz.
+
+#MAP_4,20
+Lost Tower gökyüzüne uzanıyor.
+Her kat yeni zorluklar getiriyor.
+Büyüklüğe doğru tırmanıyorum.
+Elit canavarlar bu seviyeleri koruyor.
+Buradan manzara harika.
+Lost Tower limitlerini test ediyor.
+Sırlarla dolu eski yapı.
+Daha yüksek katlar, daha büyük ödüller.
+Zirve nihai hedef.
+Sonsuz savaşlar kulesi.
+
+#MAP_7,20
+Atlans tehlikeli, dikkatli olun.
+Sualtı gizem şehri.
+Atlantisliler topraklarını koruyor.
+Su altında nefes almak garip hissettiriyor.
+Eski uygarlık kalıntıları.
+Yüksek seviye zorluklar bekliyor.
+Atlans efsanevi eşyalar barındırıyor.
+Derinlikler büyük güç gizliyor.
+Zayıf kalpli için değil.
+Her yerde batık hazineler.
+
+#MAP_8,20
+Tarkan çölü kavurucu sıcak.
+Her yerde kum ve canavarlar.
+Lizard King bölgesi.
+Çölde hayatta kalmak zor.
+Vaha kısa bir rahatlama sağlıyor.
+Tarkan'ın sıcağı dayanılmaz.
+Eski çöl uygarlığı.
+Kumularda gizli mağaralar.
+Kertenkele adamlar bu kumları devriye geziyor.
+Çöl savaşçıları burada gelişiyor.
+
+#MAP_10,20
+Icarus yükseklerde uçuyor.
+Gökyüzü fırsat diyarı.
+Kanatlar açık, özgürce uçuyor.
+Hava savaşları yoğun.
+Icarus özel hazineler barındırıyor.
+Bulutların arasından uçuyorum.
+Havada navigasyon ustalığı.
+Gökyüzü kalesi görünüyor.
+Icarus manzarası nefes kesici.
+Gökyüzü hakimiyeti keşfedildi.
+
+#MAP_30,20
+Kalima 1, cehennem kapıları.
+Her köşede şeytanlar pusuya yatıyor.
+Zamanlı zindan zorluğu.
+Şanslı düşüşler için altın canavarlar.
+Kalima partinizi test ediyor.
+Saldırıdan kurturun!
+Eski kötülük burada yaşıyor.
+Portal sonsuza kadar sürmeyecek.
+Kalima cesurlara ödül veriyor.
+Karanlık güçler burada yoğunlaşmış.
+
+#MAP_34,20
+Aida, denemeler vadisi.
+Maceracılar için görev merkezi.
+NPC Sophia bize rehberlik ediyor.
+Canavarlarla dolu kanyon.
+Aida harika görevler sunuyor.
+Efsanelerin eğitim alanları.
+Parti avı için mükemmel.
+Aida'nın zorlukları adil.
+Vadi savaş çığlıklarıyla yankılanıyor.
+Aida ısrarı ödüllendiriyor.
+
+#MAP_37,20
+Crywolf Kalesi kuşatma altında!
+Sunağı savunmak çok önemli!
+Kurtlar acımasızca saldırıyor!
+Balgass durdurulmalı!
+Sözleşme tamamlama ödülleri.
+Kale savunması harekete geçti.
+Crywolf etkinliği yoğun!
+Heykeli birlikte koruyoruz.
+Kurt istilası devam ediyor!
+Birlikte Crywolf'u savunuyoruz!
+
+#MAP_51,20
+Elbeland, devler diyarı.
+Yüksek seviye canavarlar burada dolaşıyor.
+Elit av alanları.
+Elbeland patronları sert.
+Donmuş bölge zorlukları.
+Buz ve tehlike birleşmiş.
+Elbeland ödülleri efsanevi.
+Devler topraklarını koruyor.
+Aşırı soğuk, aşırı zorluk.
+Elbeland gerçek savaşçıları test ediyor.
+
+#MAP_63,20
+Raklion, ejderha ini.
+Selupan meydan okuyucular bekliyor.
+Ejderha istila etkinliği!
+Yumurtalar yok edilmeli!
+Raklion ejderha bölgesi.
+Patron savaşı için hazırlık gerekli.
+Ödül olarak ejderha pulları.
+Raklion ordusu geliyor!
+Selupan'ı yenmek takım çalışması gerektirir.
+Ejderha avcısı unvanı bekliyor!
+
+#MAP_79,20
+Kanturu, güç kalıntıları.
+Nightmare patronu burada beliriyor.
+Kanturu etkinliği efsanevi!
+Eski kalıntılar keşfedildi.
+Maya'nın eli bu diyarı kontrol ediyor.
+Eşya iyileştirme için rafineri.
+Kanturu kulesi yükseklerde.
+Çekirdek korunmalı!
+En iyi oyuncular için elit etkinlik.
+Kanturu ödülleri yüce.
+
+#MAP_80,20
+Sessiz Harita, huzurlu antrenman.
+Farmlama için sessiz konum.
+Dikkat dağıtıcı yok, sadece farming.
+Seviye atlamak için gizli mücevher.
+Canavarlar hızla yeniden beliriyor.
+Sessiz verimlilik iş başında.
+Solo antrenman cenneti.
+Gizli yer keşfedildi.
+Zen farmlaması optimize edildi.
+Huzurlu ama üretken.

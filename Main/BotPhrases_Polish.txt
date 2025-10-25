@@ -1,0 +1,369 @@
+; BotPhrases.txt - Polish (Polski)
+; Frazy wypowiadane przez boty podczas gry
+; Format: #KATEGORIA, prawdopodobieństwo
+; Frazy, jedna na linię
+; System prawdopodobieństwa zoptymalizowany dla co najmniej 1 frazy z każdej kategorii na godzinę
+
+; Podstawowe prawdopodobieństwa dla kategorii dynamicznych
+#MAP_BASE_PROB,20
+#CLASS_BASE_PROB,15
+
+; --- KATEGORIE OGÓLNE ---
+#GENERAL,8
+Dzień dobry wszystkim
+Witam społeczność
+Ktoś tu jest?
+Pozdrowienia wojownicy
+Jak leci?
+Ciężko trenuję
+Szukam akcji
+Jak się wszyscy macie?
+Gotowy na przygodę
+Tu i gotowy
+
+#NEAR_REAL_PLAYER,18
+Cześć przyjacielu!
+Co słychać?
+Pozdrowienia!
+Jak się masz?
+Cześć!
+Wszystko w porządku?
+Witaj towarzyszu
+Co cię tu sprowadza?
+Miło cię widzieć
+Witaj!
+
+#IN_PARTY,22
+Świetna partia!
+Jazda drużyno!
+Dobra robota wszyscy
+Tak trzymać!
+Świetny zespół!
+Razem jesteśmy silniejsi
+Gotowi na więcej?
+Perfekcyjnie, kontynuujmy
+Zdobądźmy więcej EXP
+Dobre tempo chłopaki
+
+#PVP,28
+Dobra walka!
+To było intensywne
+Fajna bitwa
+Jesteś silny!
+Świetny combat
+Szacunek wojowniku
+Imponujące!
+Prawie mnie dopadłeś
+Dobry pojedynek
+To było epickie
+
+#TRADE,25
+Szukam {item_required}, handluj ze mną!
+Potrzebuję {item_required}, dobry deal czeka!
+Kupuję {item_required} za {item_reward}!
+Wymieniam {item_required} -> {item_reward}!
+WTB: {item_required} = {item_reward}
+Ktoś ma {item_required}?
+Potrzebuję {item_required}, mam {item_reward}!
+{item_required} poszukiwany, {item_reward} oferowany!
+Wymień swój {item_required} tutaj!
+Szybka wymiana: {item_required} -> {item_reward}
+
+#MORNING,12
+Dzień dobry!
+Świetny początek dnia
+Idealny poranek na trening
+Gotowy na dzień
+Energia na maksa
+
+#AFTERNOON,12
+Dzień dobry
+Produktywne popołudnie
+Czas trenować więcej
+Jeszcze jest czas
+Utrzymajmy energię
+
+#NIGHT,12
+Dobry wieczór
+Noc przygód
+Noc jest młoda
+Czas akcji
+Nocny trening
+
+; --- FRAZY SPECYFICZNE DLA KLAS ---
+#CLASS_0,15
+Moja Nova się ładuje! Uciekajcie noobsy!
+Moja laska to czysta moc kolego.
+Evil Spirit czy Aquabeam? Co za dylemat.
+Moje czary są brutalne stary!
+Teleport to moje hobby, ok?
+Poczuj mój Ice Storm, klaunie!
+Magia płynie w mojej krwi.
+Meteor uderza z furią!
+Płomień zniszczenia!
+Lodowa strzała wszystko zamraża!
+
+#CLASS_16,15
+Na ostrzu miecza kolego!
+Mój Twisting Slash cię oszołomi!
+Combo? Przygotuj się na ból!
+Ta zbroja widziała tysiąc bitew.
+BK nigdy się nie cofa! Nigdy!
+Death Stab! Prosto w serce!
+Mój koń jest szybszy niż twój strach.
+Siła to moje drugie imię, zapamiętaj!
+Dragon Slayer? Pestka dla mnie!
+Moja legenda kuję z każdym zwycięstwem.
+
+#CLASS_32,15
+Moje strzały nigdy nie chybiają celu.
+Zwinność to moja siła.
+Multishot gotowy do strzału!
+Elfia precyzja jest niezrównana.
+Ice Arrow! Zamrożony w miejscu!
+Z lasu niosę sprawiedliwość.
+Mój łuk śpiewa pieśń zwycięstwa.
+Szybkość i precyzja razem.
+Przebijający strzał nadchodzi!
+Natura prowadzi moje strzały.
+
+#CLASS_48,15
+Magic Gladiator gotowy do akcji!
+Miecz i magia w idealnej harmonii.
+Twisting Slash z magiczną mocą!
+Najlepsze z obu światów.
+Moje ostrze trzeszczy energią.
+Fire Slash tnie i pali!
+Klasa pojedynkowicza, zawsze gotowa.
+Cyclone dewastuje wszystko!
+Death Stab z magicznym wzmocnieniem!
+Mag wręcz dominuje!
+
+#CLASS_64,15
+Dark Lord dowodzi armiami!
+Mój kruk niesie śmierć z góry.
+Fire Burst oczyszcza drogę!
+Przywództwo to mój dar.
+Obrażenia krytyczne to moja specjalność.
+Mroczny koń mknie do bitwy!
+Dowódź swoimi siłami, niszcz wrogów!
+Fire Scream rozlega się na polu bitwy!
+Pan ciemności i mocy!
+Moje pety robią brudną robotę.
+
+#CLASS_80,15
+Summoner przywołuje starożytne siły!
+Moje przywołania walczą u mego boku.
+Eksplozja żywiołowej mocy!
+Magia płynie w moich żyłach.
+Nadciąga burza meteorów!
+Mistrzostwo zaklęć na szczycie.
+Starożytna magia się budzi!
+Chain lightning uderza wszystkich!
+Przywołuję siły natury!
+Moja magia nie zna granic.
+
+#CLASS_96,15
+Rage Fighter uwalnia furię!
+Moje pięści przebijają zbroję!
+Mistrzostwo broni w walce wręcz!
+Dragon Roar wstrząsa ziemią!
+Phoenix shot płonie jasno!
+Specjalista wręcz gotowy!
+Doświadczenie bojowe niezrównane.
+Dragon Slayer w moich rękach!
+Podwójna broń, podwójne obrażenia!
+Duch wojownika nigdy nie umiera!
+
+#CLASS_112,15
+Grow Lancer szarżuje naprzód!
+Moja lanca przebija wszystkie obrony!
+Spiral Slash niszczy wrogów!
+Walka konna to moja sztuka.
+Dragon Spear uwolniona!
+Rycerz królestwa!
+Szarżuję z pełną mocą!
+Cios lancą - trafienie krytyczne!
+Dominacja kawalerii!
+Mój rumak i ja jesteśmy jednością.
+
+; --- FRAZY SPECYFICZNE DLA MAP ---
+#MAP_0,20
+Lorencia, serce królestwa.
+Pola treningowe zawsze zatłoczone.
+Spokojne miejsce na początek podróży.
+Fontanna przywołuje wspomnienia.
+Tu rodzą się legendy.
+Dom słodki dom w Lorencii.
+Mury zamku nas chronią.
+Rynek Lorencii jest najlepszy.
+Tylu wojowników tu zaczyna.
+Początek każdej przygody.
+
+#MAP_1,20
+Wchodzę do Dungeon... szacunek należny.
+Powietrze tu jest ciężkie i starożytne.
+Echo dawnych bitew rozbrzmiewają.
+Jeden fałszywy krok może być ostatnim.
+Światło słoneczne tu nie dociera.
+Trzeba być czujnym w tych korytarzach.
+Ciemna energia emanuje ze ścian.
+To miejsce pochłonęło wielu poszukiwaczy.
+Ciemność tu jest niemal namacalna.
+Schodzę w głębiny ziemi.
+
+#MAP_2,20
+Devias, kraina możliwości.
+Kopalnie kryją wielkie skarby.
+Niebezpieczne ale satysfakcjonujące terytorium.
+Giganci włóczą się po tych ziemiach.
+Plac Devias zawsze zatłoczony.
+Idealne do treningu średniego poziomu.
+Uważaj na PKów tutaj!
+Bogate tereny łowieckie w Devias.
+Most łączy dwa światy.
+Devias nigdy nie śpi.
+
+#MAP_3,20
+Noria, moje ulubione miejsce.
+Portowe miasto ma swój urok.
+Morska bryza i przygoda.
+Potwory tu są twarde.
+Rynek Norii jest unikalny.
+Przybrzeżne pola treningowe.
+Latarnia wskazuje drogę.
+Marynarze i wojownicy łączą się tu.
+Brama do większych wyzwań.
+Piękno Norii jest niezrównane.
+
+#MAP_4,20
+Lost Tower sięga nieba.
+Każde piętro przynosi nowe wyzwania.
+Wspinając się ku wielkości.
+Elitarne potwory strzegą tych poziomów.
+Widok stąd jest niesamowity.
+Lost Tower testuje twoje granice.
+Starożytna struktura pełna sekretów.
+Wyższe piętra, większe nagrody.
+Szczyt to ostateczny cel.
+Wieża niekończących się bitew.
+
+#MAP_7,20
+Atlans jest niebezpieczny, uważaj.
+Podwodne miasto tajemnic.
+Atlantydzcy strzegą swojego terytorium.
+Oddychanie pod wodą jest dziwne.
+Ruiny starożytnej cywilizacji.
+Czekają wyzwania wysokiego poziomu.
+Atlans kryje legendarne przedmioty.
+Głębiny skrywają wielką moc.
+Nie dla słabych duchem.
+Zatopione skarby wszędzie.
+
+#MAP_8,20
+Pustynia Tarkan jest upalnie gorąca.
+Piasek i potwory wszędzie.
+Terytorium Lizard Kinga.
+Przetrwanie na pustyni jest trudne.
+Oaza przynosi krótką ulgę.
+Gorąco Tarkan jest nie do zniesienia.
+Starożytna cywilizacja pustyni.
+Ukryte jaskinie w wydmach.
+Jaszczuroludzie patrolują te piaski.
+Wojownicy pustyni tu prosperują.
+
+#MAP_10,20
+Icarus latający wysoko.
+Niebiańskie królestwo możliwości.
+Skrzydła rozpostarte, swobodny lot.
+Powietrzne bitwy są intensywne.
+Icarus kryje specjalne skarby.
+Lecąc przez chmury.
+Mistrzostwo nawigacji powietrznej.
+Niebiańska forteca w zasięgu wzroku.
+Widok Icarusa zapiera dech.
+Zbadana domena niebios.
+
+#MAP_30,20
+Kalima 1, bramy piekła.
+Demony czają się w każdym rogu.
+Wyzwanie czasowego lochu.
+Złote potwory dla szczęśliwych dropów.
+Kalima testuje twoją grupę.
+Przetrwaj atak!
+Starożytne zło tu mieszka.
+Portal nie będzie trwać wiecznie.
+Kalima nagradza odważnych.
+Ciemne siły skoncentrowane tutaj.
+
+#MAP_34,20
+Aida, dolina prób.
+Centrum questów dla poszukiwaczy.
+NPC Sophia nas prowadzi.
+Kanion pełen potworów.
+Aida oferuje świetne questy.
+Pola treningowe legend.
+Idealne do polowań grupowych.
+Wyzwania Aidy są uczciwe.
+Dolina rozbrzmiewa okrzykami walki.
+Aida nagradza wytrwałość.
+
+#MAP_37,20
+Twierdza Crywolf pod oblężeniem!
+Obrona ołtarza jest kluczowa!
+Wilki atakują bezlitośnie!
+Balgass musi być powstrzymany!
+Nagrody za ukończenie kontraktu.
+Obrona twierdzy w akcji.
+Event Crywolf jest intensywny!
+Chronimy statuę razem.
+Inwazja wilków w toku!
+Razem bronimy Crywolf!
+
+#MAP_51,20
+Elbeland, kraina gigantów.
+Wysokopoziomowe potwory włóczą się tutaj.
+Elitarne tereny łowieckie.
+Bossowie Elbeland są twarde.
+Wyzwania zamrożonego terytorium.
+Lód i niebezpieczeństwo razem.
+Nagrody Elbeland są legendarne.
+Giganci strzegą swojej ziemi.
+Skrajny chłód, skrajne wyzwanie.
+Elbeland testuje prawdziwych wojowników.
+
+#MAP_63,20
+Raklion, smocza jama.
+Selupan czeka na wyzywających.
+Event inwazji smoków!
+Jaja muszą być zniszczone!
+Raklion to terytorium smoków.
+Potrzebne przygotowanie do walki z bossem.
+Smocze łuski jako nagrody.
+Horda Raklion nadchodzi!
+Pokonanie Selupan wymaga pracy zespołowej.
+Tytuł pogromcy smoków czeka!
+
+#MAP_79,20
+Kanturu, ruiny mocy.
+Boss Nightmare pojawia się tutaj.
+Event Kanturu jest legendarny!
+Odkryto starożytne relikwie.
+Ręka Mayi kontroluje to królestwo.
+Rafineria do ulepszeń przedmiotów.
+Wieża Kanturu góruje wysoko.
+Rdzeń musi być chroniony!
+Elitarny event dla top graczy.
+Nagrody Kanturu są najwyższe.
+
+#MAP_80,20
+Cicha Mapa, spokojny trening.
+Cicha lokacja do farmienia.
+Bez rozpraszaczy, tylko farming.
+Ukryty klejnot do levelowania.
+Potwory respią się szybko.
+Cicha efektywność w działaniu.
+Raj solowego treningu.
+Odkryto sekretne miejsce.
+Farming Zen zoptymalizowany.
+Spokojny ale produktywny.

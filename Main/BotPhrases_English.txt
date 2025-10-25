@@ -1,0 +1,369 @@
+; BotPhrases.txt - English
+; Phrases that bots say during gameplay
+; Format: #CATEGORY, probability
+; Then the phrases, one per line
+; Probability system optimized for at least 1 phrase per category per hour
+
+; Base probabilities for dynamic categories
+#MAP_BASE_PROB,20
+#CLASS_BASE_PROB,15
+
+; --- GENERAL CATEGORIES ---
+#GENERAL,8
+Good day everyone
+Hello community
+Anyone here?
+Greetings warriors
+How's it going?
+Training hard
+Looking for action
+How's everyone doing?
+Ready for adventure
+Here and ready
+
+#NEAR_REAL_PLAYER,18
+Hello friend!
+What's up?
+Greetings!
+Hey, how are you?
+Hi there!
+Everything good?
+Hello companion
+What brings you here?
+Nice to see you
+Welcome!
+
+#IN_PARTY,22
+Excellent party!
+Let's go team!
+Good work everyone
+Keep it up!
+Great team!
+Together we're stronger
+Ready for more?
+Perfect, let's continue
+Let's get more EXP
+Good pace guys
+
+#PVP,28
+Good fight!
+That was intense
+Nice battle
+You're strong!
+Great combat
+Respect warrior
+Impressive!
+Almost got me
+Good duel
+That was epic
+
+#TRADE,25
+Looking for {item_required}, trade me!
+Need {item_required}, good deal waiting!
+Buying {item_required} for {item_reward}!
+Trading {item_required} -> {item_reward}!
+WTB: {item_required} = {item_reward}
+Someone have {item_required}?
+Need {item_required}, have {item_reward}!
+{item_required} wanted, {item_reward} offered!
+Trade your {item_required} here!
+Quick trade: {item_required} -> {item_reward}
+
+#MORNING,12
+Good morning!
+Great start to the day
+Perfect morning for training
+Ready for the day
+Energy at maximum
+
+#AFTERNOON,12
+Good afternoon
+Productive afternoon
+Time to train more
+Still have time
+Let's keep the energy up
+
+#NIGHT,12
+Good evening
+Night of adventures
+The night is young
+Action time
+Night training
+
+; --- CLASS SPECIFIC PHRASES ---
+#CLASS_0,15
+My Nova is charging! Run, noobs!
+My staff is pure power, mate.
+Evil Spirit or Aquabeam? What a dilemma.
+My spells are fierce!
+Teleport is my hobby, ok?
+Feel my Ice Storm, clown!
+Magic is in my blood.
+Meteor strikes with fury!
+Flame of destruction!
+Ice arrow freezes all!
+
+#CLASS_16,15
+By the edge of the sword, comrade!
+My Twisting Slash makes you dizzy!
+A combo? Prepare for pain!
+This armor has seen a thousand battles.
+A BK never retreats! Never!
+Death Stab! Straight to the heart!
+My horse is faster than your fear.
+Strength is my middle name, remember!
+Dragon Slayer? Piece of cake for me!
+My legend is forged with every victory.
+
+#CLASS_32,15
+My arrows never miss their mark.
+Agility is my strength.
+Multishot ready to fire!
+Elf precision is unmatched.
+Ice Arrow! Frozen in place!
+From the forest I bring justice.
+My bow sings the song of victory.
+Speed and precision combined.
+Penetrating shot coming through!
+Nature guides my arrows.
+
+#CLASS_48,15
+Magic Gladiator ready for action!
+Sword and magic in perfect harmony.
+Twisting Slash with magical power!
+The best of both worlds.
+My blade crackles with energy.
+Fire Slash cuts and burns!
+Duelist class, always ready.
+Cyclone devastates everything!
+Death Stab with magic enhancement!
+Melee mage dominating!
+
+#CLASS_64,15
+Dark Lord commanding armies!
+My raven brings death from above.
+Fire Burst clearing the path!
+Leadership is my gift.
+Critical damage is my specialty.
+Dark horse riding into battle!
+Command your forces, destroy your enemies!
+Fire Scream echoes through the battlefield!
+Lord of darkness and power!
+My pets do the dirty work.
+
+#CLASS_80,15
+Summoner calling ancient forces!
+My summons fight by my side.
+Explosion of elemental power!
+Magic flows through my veins.
+Meteor storm incoming!
+Spell mastery at its finest.
+Ancient magic awakens!
+Chain lightning strikes all!
+Summoning the forces of nature!
+My magic knows no limits.
+
+#CLASS_96,15
+Rage Fighter unleashing fury!
+My fists break through armor!
+Weapon mastery in close combat!
+Dragon Roar shaking the earth!
+Phoenix shot burning bright!
+Melee specialist ready!
+Combat expertise unmatched!
+Dragon Slayer in my hands!
+Dual weapons, double damage!
+Fighter spirit never dies!
+
+#CLASS_112,15
+Grow Lancer charging forward!
+My spear pierces all defenses!
+Spiral Slash devastating foes!
+Mounted combat is my art!
+Dragon Spear unleashed!
+Knight of the realm!
+Charging with full force!
+Lance strike critical hit!
+Cavalry dominance!
+My steed and I are one!
+
+; --- MAP SPECIFIC PHRASES ---
+#MAP_0,20
+Lorencia, the heart of the kingdom.
+Training grounds are always busy here.
+Peaceful place to start your journey.
+The fountain brings back memories.
+This is where legends are born.
+Home sweet home in Lorencia.
+The castle walls protect us all.
+Lorencia market is the best.
+So many warriors starting here.
+The beginning of every adventure.
+
+#MAP_1,20
+Entering the Dungeon... respect is due.
+The air down here is heavy and ancient.
+Echoes of past battles resound.
+One false step here could be your last.
+Sunlight doesn't reach this place.
+Must stay alert in these corridors.
+Dark energy emanates from the walls.
+This place has claimed many adventurers.
+The darkness here is almost tangible.
+Descending into the depths of the earth.
+
+#MAP_2,20
+Devias, land of opportunities.
+The mines hold great treasures.
+Dangerous but rewarding territory.
+Giants roam these lands.
+Devias Square is always crowded.
+Perfect for mid-level training.
+Watch out for PKs here!
+Rich hunting grounds in Devias.
+The bridge connects two worlds.
+Devias never sleeps.
+
+#MAP_3,20
+Noria, my favorite place.
+The port city has its charm.
+Sea breeze and adventure.
+Monsters here are tough.
+Noria market is unique.
+Coastal training grounds.
+The lighthouse guides the way.
+Sailors and warriors unite here.
+Gateway to greater challenges.
+Noria's beauty is unmatched.
+
+#MAP_4,20
+Lost Tower reaching for the sky.
+Each floor brings new challenges.
+Climbing towards greatness.
+Elite monsters guard these levels.
+The view from here is amazing.
+Lost Tower tests your limits.
+Ancient structure full of secrets.
+Higher floors, greater rewards.
+Summit is the ultimate goal.
+Tower of endless battles.
+
+#MAP_7,20
+Atlans is dangerous, be careful.
+Underwater city of mysteries.
+Atlanteans guard their territory.
+Breathing underwater feels strange.
+Ancient civilization ruins.
+High-level challenges await.
+Atlans holds legendary items.
+The depths conceal great power.
+Not for the faint of heart.
+Submerged treasures everywhere.
+
+#MAP_8,20
+Tarkan desert is scorching hot.
+Sand and monsters everywhere.
+Lizard King territory.
+Desert survival is tough.
+Oasis brings brief relief.
+Tarkan's heat is unbearable.
+Ancient desert civilization.
+Hidden caves in the dunes.
+Lizardmen patrol these sands.
+Desert warriors thrive here.
+
+#MAP_10,20
+Icarus flying high above.
+Sky realm of opportunities.
+Wings spread, soaring free.
+Aerial battles are intense.
+Icarus holds special treasures.
+Flying through the clouds.
+Aerial navigation mastery.
+Sky fortress in sight.
+Icarus view is breathtaking.
+Heaven's domain explored.
+
+#MAP_30,20
+Kalima 1, gates of hell.
+Demons lurk in every corner.
+Timed dungeon challenge.
+Golden monsters for lucky drops.
+Kalima tests your party.
+Survive the onslaught!
+Ancient evil resides here.
+Portal won't last forever.
+Kalima rewards the brave.
+Dark forces concentrated here.
+
+#MAP_34,20
+Aida valley of trials.
+Quest hub for adventurers.
+NPC Sophia guides us.
+Canyon filled with monsters.
+Aida offers great quests.
+Training grounds of legends.
+Perfect for party hunting.
+Aida's challenges are fair.
+Valley echoes with battle cries.
+Aida rewards persistence.
+
+#MAP_37,20
+Crywolf Fortress under siege!
+Defending the altar is crucial.
+Wolves attacking relentlessly!
+Balgass must be stopped!
+Contract completion rewards.
+Fortress defense in action.
+Crywolf event is intense!
+Protecting the statue together.
+Wolf invasion underway!
+United we defend Crywolf!
+
+#MAP_51,20
+Elbeland, land of giants.
+High-level monsters roam here.
+Elite hunting grounds.
+Elbeland bosses are tough.
+Frozen territory challenges.
+Ice and danger combined.
+Elbeland rewards are legendary.
+Giants guard their land.
+Extreme cold, extreme challenge.
+Elbeland tests true warriors.
+
+#MAP_63,20
+Raklion dragon's lair.
+Selupan awaits challengers.
+Dragon invasion event!
+Eggs must be destroyed!
+Raklion is dragon territory.
+Boss battle preparation needed.
+Dragon scales as rewards.
+Raklion horde is coming!
+Defeating Selupan requires teamwork.
+Dragon slayer title awaits!
+
+#MAP_79,20
+Kanturu ruins of power.
+Nightmare boss spawns here.
+Kanturu event is legendary!
+Ancient relics discovered.
+Maya's hand controls this realm.
+Refinery for item upgrades.
+Kanturu tower looms tall.
+Core must be protected!
+Elite event for top players.
+Kanturu rewards are supreme.
+
+#MAP_80,20
+Silent Map peaceful training.
+Quiet grinding location.
+No distractions, just farming.
+Hidden gem for leveling.
+Monsters respawn quickly.
+Silent efficiency in action.
+Solo training paradise.
+Secret spot discovered.
+Zen farming optimized.
+Peaceful yet productive.
