@@ -1443,8 +1443,8 @@ LOAD_GFX:
 		LoadBitmapA("Interface\\GFx\\winPet_I1.tga", 61545, GL_LINEAR, GL_CLAMP, 1, 0);
 		LoadBitmapA("Interface\\GFx\\item_pbtnbg.tga", 61547, GL_LINEAR, GL_CLAMP, 1, 0);
 	//-- Folder MacroUI
-	//LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_Main.tga", 51550, GL_LINEAR, GL_CLAMP, 1, 0);//vieja - wrong texture ID
-	pLoadImage("Interface\\GFx\\MacroUI\\MacroUI_Main.tga", 0xF3001, 0x2601, 0x2900, 1, 0);//correct - loads Main.tga with correct texture ID
+	//LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_Main.tga", 51550, GL_LINEAR, GL_CLAMP, 1, 0);//vieja
+	pLoadImage("Interface\\GFx\\MacroUI\\MacroUI_I1.tga", 0xF3001, 0x2601, 0x2900, 1, 0);//nueva
 
 
 		LoadBitmapA("Interface\\GFx\\MacroUI\\MacroUI_BSetup.tga", 51546, GL_LINEAR, GL_CLAMP, 1, 0);
