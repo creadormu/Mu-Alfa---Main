@@ -168,8 +168,9 @@ bool CFPSSelector::ShowFPSDialog()
     int result = MessageBox(NULL, 
         "Select FPS Mode:\n\n"
         "YES = 60 FPS (Recommended)\n"
-        "NO = 40 FPS (Default)\n"
+        "NO = 40 FPS (Default - Original Speed)\n"
         "CANCEL = 120 FPS (High Performance)\n\n"
+        "Movement speed will be automatically adjusted.\n"
         "OpenGL Shaders will be loaded for enhanced graphics.",
         "FPS Selection - Enhanced Graphics",
         MB_YESNOCANCEL | MB_ICONQUESTION | MB_TOPMOST);
@@ -195,6 +196,19 @@ bool CFPSSelector::ShowFPSDialog()
     
     // Initialize shaders and VSync
     InitializeShaders();
+    
+    // Show confirmation message with actual FPS info
+    char confirmMsg[256];
+    int actualFPS = (int)(1000.0f / m_SelectedFPS);
+    sprintf(confirmMsg, 
+        "FPS Mode Set: %d FPS\n\n"
+        "Frame Time: %dms\n"
+        "Movement speed: Adjusted for %d FPS\n\n"
+        "Note: If characters move too fast/slow,\n"
+        "restart and select 40 FPS mode.", 
+        actualFPS, m_SelectedFPS, actualFPS);
+    
+    MessageBox(NULL, confirmMsg, "FPS Configuration Applied", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
     
     return true;
 }
