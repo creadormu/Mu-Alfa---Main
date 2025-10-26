@@ -1,0 +1,189 @@
+═══════════════════════════════════════════════════════════════════════════════
+ HOW TO REVERT TO ORIGINAL (REMOVE ALL FPS MOD CODE)
+═══════════════════════════════════════════════════════════════════════════════
+
+YOU ARE CORRECT! The FPS mod isn't providing real benefits and just adds complexity.
+
+Let's go back to the original, working code.
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 1: RESTORE ORIGINAL Main.cpp
+═══════════════════════════════════════════════════════════════════════════════
+
+Remove these lines from Main.cpp:
+
+Line 93 (or similar):
+    ❌ DELETE: #include "FPSSelector.h"
+    ❌ DELETE: #include "FPSSelector_GraphicsOnly.h"
+
+Line 177 (or similar, after ReadPetEffectBMD):
+    ❌ DELETE: gFPSSelector.ShowFPSDialog();
+    ❌ DELETE: gGraphicsEnhancer.InitializeGraphicsEnhancements();
+
+Your Main.cpp should look like the ORIGINAL:
+
+    #include "GuildLogo.h"
+    #include "LoginMainWin.h"
+    #include "AutoLoginWin.h"
+    // ← NOTHING HERE, no FPS includes!
+
+    HINSTANCE hins;
+    
+    // ... later in EntryProc() ...
+    
+    if(gProtect.ReadPetEffectBMD("Data\\Local\\EffectTRSData.bmd") == 0)
+    {
+        MessageBox(0,"Data\\Local\\EffectTRSData.bmd missing or File corrupt!","Error", MB_OK | MB_ICONERROR);
+        ExitProcess(0);
+    }
+    
+    // ← NOTHING HERE, no FPS dialog calls!
+        
+    //gInfoLog.Load();
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 2: REMOVE FILES FROM PROJECT
+═══════════════════════════════════════════════════════════════════════════════
+
+In Visual Studio, remove these files from your project:
+
+❌ FPSSelector.h
+❌ FPSSelector.cpp
+❌ FPSSelector_GraphicsOnly.h
+❌ FPSSelector_GraphicsOnly.cpp
+❌ FrameRateFix.h
+❌ FrameRateFix.cpp
+
+Right-click each file → Remove from Project
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 3: KEEP ORIGINAL MainInfo.ini
+═══════════════════════════════════════════════════════════════════════════════
+
+Use your ORIGINAL MainInfo.ini with:
+
+    LimitFPS = 40
+    MonitorFPS = 1
+    MonitorMS = 1
+
+Don't use the new MainInfo.ini from the mod.
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 4: DON'T COPY THESE FILES TO CLIENT
+═══════════════════════════════════════════════════════════════════════════════
+
+Don't copy to your client folder:
+
+❌ glew32.dll (not needed)
+❌ VSyncLib.GLIB (not needed)
+❌ Shaders/ folder (not used)
+
+Just use:
+✅ Your original Main.dll
+✅ CEffect.dll (you already have)
+✅ Original configuration
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 5: COMPILE CLEAN VERSION
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Make sure Main.cpp has NO FPS code
+2. Make sure FPS files are removed from project
+3. Build → Build Solution
+4. Output: Clean Main.dll (original code)
+
+═══════════════════════════════════════════════════════════════════════════════
+RESULT: BACK TO STABLE, WORKING GAME
+═══════════════════════════════════════════════════════════════════════════════
+
+Your game will have:
+✅ Original FPS (~26)
+✅ Normal movement speed
+✅ CEffect.dll graphics (already good)
+✅ Stable gameplay
+✅ No conflicts
+✅ No bugs
+
+═══════════════════════════════════════════════════════════════════════════════
+OPTIONAL: IF YOU WANT JUST VSYNC (SMOOTHER DISPLAY)
+═══════════════════════════════════════════════════════════════════════════════
+
+If you want ONLY VSync (no FPS changes, no shader loading):
+
+1. Add to project:
+    ✅ VSync.h (simple, clean)
+    ✅ VSync.cpp (simple, clean)
+
+2. In Main.cpp, add ONE line:
+
+    #include "VSync.h"
+    
+    // After ReadPetEffectBMD:
+    gVSync.Initialize();  // That's it!
+
+3. Optionally copy VSyncLib.GLIB to client
+
+This gives you:
+✅ Original game behavior
+✅ Normal movement speed
+✅ Smoother display (no screen tearing)
+✅ No complications
+
+═══════════════════════════════════════════════════════════════════════════════
+WHY THIS IS THE RIGHT SOLUTION
+═══════════════════════════════════════════════════════════════════════════════
+
+❌ FPS Mod Problems:
+    - Loaded shaders but didn't compile/use them (no visual improvement)
+    - Changed FPS but broke movement speed
+    - Added complexity for zero benefit
+    - Created potential conflicts
+
+✅ Original + CEffect.dll:
+    - CEffect.dll already handles graphics
+    - Original FPS works perfectly
+    - Movement speed is correct
+    - Stable and tested
+    - No complications
+
+YOU WERE RIGHT TO QUESTION IT!
+
+The game already has everything it needs. CEffect.dll is providing your graphics
+enhancements. The FPS mod was trying to "fix" something that wasn't broken.
+
+═══════════════════════════════════════════════════════════════════════════════
+SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+REMOVE from Main.cpp:
+    ❌ #include "FPSSelector..."
+    ❌ gFPSSelector.ShowFPSDialog()
+    ❌ gGraphicsEnhancer.InitializeGraphicsEnhancements()
+
+REMOVE from project:
+    ❌ All FPSSelector files
+    ❌ All FrameRateFix files
+
+KEEP:
+    ✅ Original Main.cpp
+    ✅ Original MainInfo.ini
+    ✅ CEffect.dll configuration
+    ✅ Normal game behavior
+
+OPTIONALLY ADD:
+    ✅ VSync.h / VSync.cpp (if you want smooth display)
+
+RESULT:
+    ✅ Stable, working game
+    ✅ Normal movement speed
+    ✅ CEffect.dll graphics
+    ✅ No complications
+    ✅ Professional solution
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Keep it simple! Less code = Fewer bugs! 🚀
+
+The best code is code you DON'T have to write! ✨
+
+═══════════════════════════════════════════════════════════════════════════════

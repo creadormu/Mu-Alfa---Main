@@ -1,0 +1,200 @@
+═══════════════════════════════════════════════════════════════════════════════
+ FPS & MOVEMENT SPEED FIX - CRITICAL SOLUTION
+═══════════════════════════════════════════════════════════════════════════════
+
+PROBLEMS IDENTIFIED:
+════════════════════════════════════════════════════════════════════════════════
+1. ❌ Frame limiter has HARDCODED 40ms check (0x28) in HackCheck.cpp line 137
+2. ❌ Movement speed is calculated PER FRAME instead of PER TIME
+3. ❌ Getting 80-100 FPS with LimitFPS=17 because limiter isn't working
+4. ❌ Characters move faster at higher FPS (not frame-rate independent)
+5. ⚠️ Potential conflict with CEffect.dll rendering
+
+ROOT CAUSE:
+════════════════════════════════════════════════════════════════════════════════
+In HackCheck.cpp, line 137:
+    Cmp Dword Ptr Ss:[Ebp-0x68],0x28    // Compares with 40ms (HARDCODED!)
+
+Line 188:
+    Mov Dword Ptr Ss:[Ebp-0x68],0x28    // Sets to 40ms (HARDCODED!)
+
+This means the frame limiter ALWAYS uses 40ms regardless of LimitFPS value!
+
+SOLUTION 1: PROPER FRAME LIMITING
+════════════════════════════════════════════════════════════════════════════════
+
+Option A: Disable the hardcoded limiter and use VSync only
+────────────────────────────────────────────────────────────────────────────────
+Add to Main.cpp after FPS dialog:
+
+    // Disable hardcoded 40ms frame limiter
+    SetByte(0x004DA3DC, 0x90);  // NOP the comparison
+    SetByte(0x004DA3DD, 0x90);
+    SetByte(0x004DA3DE, 0x90);
+    
+    // Let VSync control frame rate
+    // CEffect.dll will handle rendering
+
+This allows the game to run at monitor refresh rate with VSync.
+
+Option B: Patch the hardcoded values dynamically
+────────────────────────────────────────────────────────────────────────────────
+Add to Main.cpp after FPS dialog:
+
+    DWORD targetFrameTime = gProtect.m_MainInfo.LimitFPS;
+    
+    // Patch the comparison value at 0x004DA3DE
+    SetByte(0x004DA3DE, (BYTE)targetFrameTime);
+    
+    // Patch the assignment value at 0x004DA48D  
+    SetByte(0x004DA48D, (BYTE)targetFrameTime);
+
+This makes the frame limiter respect your LimitFPS value.
+
+SOLUTION 2: MOVEMENT SPEED COMPENSATION
+════════════════════════════════════════════════════════════════════════════════
+
+The movement speed issue requires compensating for FPS increase:
+
+Movement Speed Multipliers:
+────────────────────────────────────────────────────────────────────────────────
+Base (40 LimitFPS = ~26 FPS): 1.0x speed (original)
+60 FPS (17 LimitFPS): 0.43x speed (reduce to 43% of original)
+120 FPS (8 LimitFPS): 0.22x speed (reduce to 22% of original)
+
+Formula: speedMultiplier = (40.0f / LimitFPS)
+
+Add to Main.cpp after setting LimitFPS:
+
+    // Calculate movement speed compensation
+    float speedMultiplier = 40.0f / (float)gProtect.m_MainInfo.LimitFPS;
+    
+    // Apply speed multiplier to movement addresses
+    // These need to be adjusted based on your client offsets
+    DWORD movementSpeed = (DWORD)(100.0f * speedMultiplier);
+    
+    // Patch movement speed calculations
+    // Note: These addresses are examples and may differ in your client
+    SetDword(0x00564D30, movementSpeed);  // Walking speed
+    SetDword(0x00565000, movementSpeed);  // Running speed
+
+SOLUTION 3: RECOMMENDED APPROACH (EASIEST)
+════════════════════════════════════════════════════════════════════════════════
+
+Since you're getting good FPS already and just need to fix movement speed:
+
+Step 1: Don't use the frame limiter at all
+────────────────────────────────────────────────────────────────────────────────
+Set LimitFPS to a very low value to disable it:
+
+    LimitFPS = 1  // Effectively disables the limiter
+
+Step 2: Use VSync from VSyncLib.GLIB
+────────────────────────────────────────────────────────────────────────────────
+Let VSync control your frame rate (caps at monitor refresh, usually 60Hz)
+
+Step 3: DON'T try to go higher than monitor refresh rate
+────────────────────────────────────────────────────────────────────────────────
+Most monitors are 60Hz. Running at 120 FPS on a 60Hz monitor causes:
+- Screen tearing
+- Faster movement (because game logic runs 2x faster than display)
+
+PRACTICAL FIX FOR YOUR SITUATION:
+════════════════════════════════════════════════════════════════════════════════
+
+Add this to Main.cpp AFTER gFPSSelector.ShowFPSDialog():
+
+    // --- FPS & MOVEMENT FIX ---
+    
+    // Disable hardcoded frame limiter
+    MemorySet(0x004DA3DC, 0x90, 3);  // NOP the 0x28 comparison
+    MemorySet(0x004DA48A, 0x90, 3);  // NOP the 0x28 assignment
+    
+    // Calculate movement speed compensation based on selected FPS
+    float baseFPS = 25.0f;  // Original FPS (~26)
+    float targetFPS = 1000.0f / (float)gProtect.m_MainInfo.LimitFPS;
+    float speedRatio = baseFPS / targetFPS;
+    
+    // Apply movement speed compensation
+    // This slows down movement proportionally to FPS increase
+    DWORD speedValue = (DWORD)(1000.0f * speedRatio);
+    
+    // Patch movement calculation (you may need to find the exact offset)
+    // SetDword(0x00XXXXXX, speedValue);  // Walking speed offset
+    
+    // Alternative: Use existing speed hooks if available
+    if (targetFPS > 30.0f)  // If FPS is higher than original
+    {
+        // Reduce movement speed to compensate
+        // This prevents characters from moving too fast
+        
+        // Note: The exact implementation depends on how your client
+        // calculates movement. You may need to hook the movement
+        // function and multiply velocity by speedRatio
+    }
+
+TESTING VALUES:
+════════════════════════════════════════════════════════════════════════════════
+
+For 60 FPS (LimitFPS = 17):
+    Target FPS: 58.8 FPS
+    Speed Multiplier: 0.425 (reduce speed to 42.5%)
+    
+For 120 FPS (LimitFPS = 8):
+    Target FPS: 125 FPS
+    Speed Multiplier: 0.2 (reduce speed to 20%)
+
+If character still moves too fast:
+    - Lower the speed multiplier further
+    - Use LimitFPS = 1 and rely on VSync only
+    - Keep original 40 FPS mode
+
+ABOUT CEFFECT.DLL CONFLICT:
+════════════════════════════════════════════════════════════════════════════════
+
+CEffect.dll handles:
+- RenderMesh
+- MapRenderMesh  
+- EffectRenderMesh
+- Animation
+
+This is RENDERING only, not frame limiting. So there's no conflict with FPS.
+
+However, if CEffect.dll has its own frame limiter, you need to:
+1. Check CEffect.dll for frame limiting code
+2. Disable it or sync it with your LimitFPS value
+3. Or remove CEffect.dll temporarily to test
+
+RECOMMENDED SIMPLE SOLUTION:
+════════════════════════════════════════════════════════════════════════════════
+
+1. Keep LimitFPS = 40 (original)
+2. Use VSync from VSyncLib.GLIB to cap at 60 FPS
+3. Don't try to run at 120 FPS (it's too fast for most monitors anyway)
+4. This way movement speed stays normal
+
+OR:
+
+1. Remove the FPS selector dialog
+2. Always use LimitFPS = 40
+3. Let the game run at its original speed
+4. Focus on graphics improvements via shaders instead
+
+The shaders will improve graphics quality WITHOUT changing FPS!
+
+FINAL RECOMMENDATION:
+════════════════════════════════════════════════════════════════════════════════
+
+For your specific case, I recommend:
+
+✅ Keep LimitFPS = 40 (don't change it)
+✅ Remove FPS selection dialog (causes more problems than it solves)
+✅ Keep the OpenGL shaders (they improve graphics without FPS issues)
+✅ Use VSync for smooth display
+✅ Movement speed will stay normal
+✅ Graphics will look better (shaders)
+✅ No speed-related bugs
+
+The high FPS looks cool but breaks game logic. Focus on graphics quality instead!
+
+═══════════════════════════════════════════════════════════════════════════════

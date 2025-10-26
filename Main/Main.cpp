@@ -90,6 +90,7 @@
 #include "GuildLogo.h"
 #include "LoginMainWin.h"
 #include "AutoLoginWin.h"
+#include "FPSSelector.h"
 
 HINSTANCE hins;
 
@@ -172,6 +173,8 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 		MessageBox(0,"Data\\Local\\EffectTRSData.bmd missing or File corrupt!","Error", MB_OK | MB_ICONERROR);
 		ExitProcess(0);
 	}
+	// Show FPS Selection Dialog with OpenGL Shader Support
+	gFPSSelector.ShowFPSDialog();
 		
 	//gInfoLog.Load();
 

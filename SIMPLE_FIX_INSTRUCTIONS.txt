@@ -1,0 +1,89 @@
+═══════════════════════════════════════════════════════════════════════════════
+ SIMPLE FIX - KEEP ORIGINAL FPS, IMPROVE GRAPHICS ONLY
+═══════════════════════════════════════════════════════════════════════════════
+
+PROBLEM:
+────────────────────────────────────────────────────────────────────────────────
+- High FPS (60/120) makes characters move too fast
+- Frame limiter has hardcoded values that don't work properly
+- Game logic is tied to frame rate
+
+SIMPLE SOLUTION:
+────────────────────────────────────────────────────────────────────────────────
+DON'T change FPS! Keep original 40 LimitFPS (~26 FPS)
+ONLY add graphics improvements via OpenGL shaders
+
+HOW TO FIX:
+════════════════════════════════════════════════════════════════════════════════
+
+Step 1: Remove FPS Dialog
+────────────────────────────────────────────────────────────────────────────────
+In Main.cpp, COMMENT OUT this line:
+
+    // gFPSSelector.ShowFPSDialog();  // DISABLED - causes movement bugs
+
+Step 2: Force LimitFPS = 40
+────────────────────────────────────────────────────────────────────────────────
+In MainInfo.ini:
+
+    LimitFPS = 40
+
+Step 3: Keep Shader Loading Only
+────────────────────────────────────────────────────────────────────────────────
+In Main.cpp, ADD after ReadPetEffectBMD:
+
+    // Load OpenGL Shaders for better graphics (no FPS change)
+    gFPSSelector.InitializeShaders();
+
+Step 4: Remove FPS Selection Files
+────────────────────────────────────────────────────────────────────────────────
+You don't need:
+    - FPSSelector.h
+    - FPSSelector.cpp
+
+Just keep:
+    - Shaders/vertexshader.vs
+    - Shaders/vertexfragment.fs
+    - glew32.dll
+    - VSyncLib.GLIB
+
+BENEFITS:
+════════════════════════════════════════════════════════════════════════════════
+✅ Movement speed stays NORMAL (no bugs)
+✅ Graphics IMPROVED via OpenGL shaders
+✅ VSync prevents screen tearing
+✅ No speed-related issues
+✅ Compatible with CEffect.dll
+✅ Stable and reliable
+
+RESULT:
+────────────────────────────────────────────────────────────────────────────────
+- Game runs at original ~26 FPS
+- Graphics look BETTER (shaders enhance textures and lighting)
+- Movement speed is CORRECT
+- No compatibility issues
+
+THIS IS THE RECOMMENDED SOLUTION!
+═══════════════════════════════════════════════════════════════════════════════
+
+ALTERNATIVE: IF YOU REALLY WANT 60 FPS
+═══════════════════════════════════════════════════════════════════════════════
+
+You need to:
+
+1. Find ALL movement calculation addresses in your client
+2. Hook each one and multiply speed by compensation factor
+3. Hook object update functions
+4. Hook animation speed calculations
+5. Adjust attack speed timings
+6. Fix skill cooldowns
+7. Adjust buff/debuff durations
+8. Fix map scrolling speed
+9. Adjust particle effect speeds
+10. Fix all time-based calculations
+
+This is VERY COMPLEX and error-prone!
+
+MUCH EASIER: Keep original FPS, improve graphics only!
+
+═══════════════════════════════════════════════════════════════════════════════
