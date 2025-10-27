@@ -99,38 +99,6 @@
 HINSTANCE hins;
 
 
-// Helper function to initialize complete FPS system
-inline void InitializeHighFPSSystem()
-{
-	// Get target FPS from config
-	int targetFPS = gProtect.m_MainInfo.LimitFPS;
-	
-	// Default to 60 FPS if not set or invalid
-	if (targetFPS <= 0 || targetFPS < 25)
-	{
-		targetFPS = 60;
-	}
-	
-	// Initialize FPS Manager
-	gAdvancedFPSManager.Initialize(targetFPS);
-	
-	// Initialize Improved HackCheck
-	InitImprovedHackCheck();
-	
-	// Initialize Shaders (optional)
-	bool shadersEnabled = gOptimizedShaders.Initialize();
-	
-	// You can check shader status here
-	// if (!shadersEnabled) { /* Shaders not available, use fallback rendering */ }
-}
-
-// Helper function to update FPS system each frame
-inline void UpdateHighFPSSystem()
-{
-	gAdvancedFPSManager.Update();
-}
-
-
 void StartAddress(LPVOID lpThreadParameter)
 {
 	HANDLE v1;
@@ -210,34 +178,6 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 		MessageBox(0,"Data\\Local\\EffectTRSData.bmd missing or File corrupt!","Error", MB_OK | MB_ICONERROR);
 		ExitProcess(0);
 	}
-
-
-	// ============================================================================
-	// ADD THIS: Initialize High FPS System
-	// ============================================================================
-
-	int targetFPS = gProtect.m_MainInfo.LimitFPS;
-
-	// Default to 60 FPS if not configured or invalid
-	if (targetFPS <= 0 || targetFPS < 25)
-	{
-		targetFPS = 60;
-	}
-
-	// Initialize FPS Manager with delta time support
-	gAdvancedFPSManager.Initialize(targetFPS);
-
-	// Initialize Optimized Shaders (optional, for better graphics)
-	bool shadersEnabled = gOptimizedShaders.Initialize();
-
-	// Optional: Show message if shaders loaded
-	if (shadersEnabled)
-	{
-		char buffer[128];
-		sprintf(buffer, "High FPS System Initialized\nTarget: %d FPS\nShaders: Enabled", targetFPS);
-		MessageBox(0, buffer, "FPS Optimization", MB_OK | MB_ICONINFORMATION);
-	}
-
 
 
 	//gInfoLog.Load();
@@ -477,7 +417,14 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 
 	gProtect.CheckCameraFile();
 
-	InitHackCheck();
+	//InitHackCheck();
+
+	// NEW: HIGH FPS SYSTEM INITIALIZATION
+	int targetFPS = gProtect.m_MainInfo.LimitFPS;
+	if (targetFPS <= 0 || targetFPS < 25) targetFPS = 60;
+
+	gAdvancedFPSManager.Initialize(targetFPS);
+	bool shadersLoaded = gOptimizedShaders.Initialize();
 
 	gTrayMode.Load();
 
