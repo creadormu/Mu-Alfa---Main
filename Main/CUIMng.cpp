@@ -2,6 +2,10 @@
 #include "CUIMng.h"
 #include "Util.h"
 #include "Protect.h"
+#include "AdvancedFPSManager.h"
+#include "ImprovedHackCheck.h"
+#include "OptimizedShaders.h"
+
 
 // ---------------------------------------------------------------------------------------------
 CUIMng gCUIMng;
@@ -51,10 +55,6 @@ void CUIMng::CLoadBitmap(char* Folder, int Code, int Arg3, int Arg4, int Arg5, i
 
 
 }
-
-
-
-
 
 
 bool CGlobalBitmapWide::GameResolution()
@@ -226,6 +226,9 @@ void CUIMng::RenderTitleSceneUI(int This, HDC hDC, DWORD dwNow, DWORD dwTotal)
 	EndOpengl();
 	glFlush();
 	SwapBuffers(hDC);
+
+	gAdvancedFPSManager.Update();
+
 }
 
 void CUIMng::Load()

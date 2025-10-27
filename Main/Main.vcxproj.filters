@@ -777,6 +777,15 @@
     <ClInclude Include="UITextInputBox.h">
       <Filter>Source Files\CustomRegistro</Filter>
     </ClInclude>
+    <ClInclude Include="AdvancedFPSManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImprovedHackCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptimizedShaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -1201,6 +1210,15 @@
     </ClCompile>
     <ClCompile Include="CustomRankUser.cpp">
       <Filter>Source Files\Main\Map\SelectChar</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvancedFPSManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImprovedHackCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptimizedShaders.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

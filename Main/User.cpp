@@ -12,6 +12,9 @@
 #include "User.h"
 #include "PrintPlayer.h"
 #include "Camera.h"
+#include "AdvancedFPSManager.h"
+#include "ImprovedHackCheck.h"
+#include "OptimizedShaders.h"
 
 User gObjUser;
 
@@ -51,18 +54,22 @@ void User::Refresh()
 
 	sprintf(this->getName,"%s",gObjUser.lpPlayer->Name);
 
-	if ( gObjUser.GetActiveSkill() == 261 || 
-		gObjUser.GetActiveSkill() == 552 || 
-		gObjUser.GetActiveSkill() == 555 )
+	// NEW CODE (Add this):
+	float frameMultiplier = gAdvancedFPSManager.GetFrameMultiplier();
+
+	if (gObjUser.GetActiveSkill() == 261 ||
+		gObjUser.GetActiveSkill() == 552 ||
+		gObjUser.GetActiveSkill() == 555)
 	{
-		SetDouble(&pFrameSpeed1, 0.0004000);
-		SetDouble(&pFrameSpeed2, 0.0002000);
+		SetDouble(&pFrameSpeed1, 0.0004000 * frameMultiplier);
+		SetDouble(&pFrameSpeed2, 0.0002000 * frameMultiplier);
 	}
 	else
 	{
-		SetDouble(&pFrameSpeed1, 0.0040000);
-		SetDouble(&pFrameSpeed2, 0.0020000);
+		SetDouble(&pFrameSpeed1, 0.0040000 * frameMultiplier);
+		SetDouble(&pFrameSpeed2, 0.0020000 * frameMultiplier);
 	}
+
 }
 
 bool User::GetTarget()

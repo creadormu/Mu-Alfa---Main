@@ -532,16 +532,16 @@ void CMacroUIEx::RenderFrame(int *This)
 
 		if (gInterface.Data[ButtonSettings].OnClick)
 		{
-			RenderBitmap(51546, X + 156.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
+			RenderBitmap(51546, X + 156.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
 		}
 		else
 		{
-			RenderBitmap(51546, X + 156.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
+			RenderBitmap(51546, X + 156.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
 		}
 	}
 	else
 	{
-		RenderBitmap(51546, X + 156.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
+		RenderBitmap(51546, X + 156.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
 	}
 	if (!*(BYTE*)(*(DWORD*)(MUHELPER_STRUC)+0x08))
 	{
@@ -553,16 +553,16 @@ void CMacroUIEx::RenderFrame(int *This)
 
 			if (gInterface.Data[ButtonStart].OnClick)
 			{
-				RenderBitmap(51547, X + 175.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
+				RenderBitmap(51547, X + 175.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
 			}
 			else
 			{
-				RenderBitmap(51547, X + 175.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
+				RenderBitmap(51547, X + 175.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
 			}
 		}
 		else
 		{
-			RenderBitmap(51547, X + 175.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
+			RenderBitmap(51547, X + 175.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
 		}
 	}
 	else
@@ -600,16 +600,16 @@ void CMacroUIEx::RenderFrame(int *This)
 		// ----
 		if (gInterface.Data[eMenu].OnClick)
 		{
-			RenderBitmap(51553, X + 137.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
+			RenderBitmap(51553, X + 137.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.451f, 0.878, 0.225, 1, 1, 0.0);
 		}
 		else
 		{
-			RenderBitmap(51553, X + 137.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
+			RenderBitmap(51553, X + 137.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.2255f, 0.878, 0.225, 1, 1, 0.0);
 		}
 	}
 	else
 	{
-		RenderBitmap(51553, X + 137.0f + renderMenu, Y + 7.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
+		RenderBitmap(51553, X + 137.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
 	}
 //-------------------------------------------------------------------------------
 	pGLSwitch();

@@ -39,9 +39,9 @@ class CUIMng
 public:
 	void Load();
 
-	static void __thiscall CpgbLoding(void *This, int a2, int a3, int a4, int a5, int a6, int a7, int a8, char a9, float a10, float a11);
+	static void CpgbLoding(void *This, int a2, int a3, int a4, int a5, int a6, int a7, int a8, char a9, float a10, float a11);
 
-	static void __thiscall RenderTitleSceneUI(int This, HDC hDC, DWORD dwNow, DWORD dwTotal);
+	static void RenderTitleSceneUI(int This, HDC hDC, DWORD dwNow, DWORD dwTotal);
 
 	static void CLoadBitmap(char * Folder, int Code, int Arg3, int Arg4, int Arg5, int Arg6);
 

@@ -90,8 +90,46 @@
 #include "GuildLogo.h"
 #include "LoginMainWin.h"
 #include "AutoLoginWin.h"
+#include "AdvancedFPSManager.h"
+#include "ImprovedHackCheck.h"
+#include "OptimizedShaders.h"
+
+
 
 HINSTANCE hins;
+
+
+// Helper function to initialize complete FPS system
+inline void InitializeHighFPSSystem()
+{
+	// Get target FPS from config
+	int targetFPS = gProtect.m_MainInfo.LimitFPS;
+	
+	// Default to 60 FPS if not set or invalid
+	if (targetFPS <= 0 || targetFPS < 25)
+	{
+		targetFPS = 60;
+	}
+	
+	// Initialize FPS Manager
+	gAdvancedFPSManager.Initialize(targetFPS);
+	
+	// Initialize Improved HackCheck
+	InitImprovedHackCheck();
+	
+	// Initialize Shaders (optional)
+	bool shadersEnabled = gOptimizedShaders.Initialize();
+	
+	// You can check shader status here
+	// if (!shadersEnabled) { /* Shaders not available, use fallback rendering */ }
+}
+
+// Helper function to update FPS system each frame
+inline void UpdateHighFPSSystem()
+{
+	gAdvancedFPSManager.Update();
+}
+
 
 void StartAddress(LPVOID lpThreadParameter)
 {
@@ -172,7 +210,36 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 		MessageBox(0,"Data\\Local\\EffectTRSData.bmd missing or File corrupt!","Error", MB_OK | MB_ICONERROR);
 		ExitProcess(0);
 	}
-		
+
+
+	// ============================================================================
+	// ADD THIS: Initialize High FPS System
+	// ============================================================================
+
+	int targetFPS = gProtect.m_MainInfo.LimitFPS;
+
+	// Default to 60 FPS if not configured or invalid
+	if (targetFPS <= 0 || targetFPS < 25)
+	{
+		targetFPS = 60;
+	}
+
+	// Initialize FPS Manager with delta time support
+	gAdvancedFPSManager.Initialize(targetFPS);
+
+	// Initialize Optimized Shaders (optional, for better graphics)
+	bool shadersEnabled = gOptimizedShaders.Initialize();
+
+	// Optional: Show message if shaders loaded
+	if (shadersEnabled)
+	{
+		char buffer[128];
+		sprintf(buffer, "High FPS System Initialized\nTarget: %d FPS\nShaders: Enabled", targetFPS);
+		MessageBox(0, buffer, "FPS Optimization", MB_OK | MB_ICONINFORMATION);
+	}
+
+
+
 	//gInfoLog.Load();
 
 	SetByte(0x00E61144,0xA0); // Accent
@@ -268,9 +335,11 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 
 	SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
 
-	SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+	//SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+	SetCompleteHook(0xE9, 0x004DA280, &CheckTickCount1_Improved);
 
-	SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
+	//SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
+	SetCompleteHook(0xE9, 0x004DA3A1, &CheckTickCount2_Improved);
 
 	SetCompleteHook(0xE8,0x005B96E8,&DrawNewHealthBar);
 

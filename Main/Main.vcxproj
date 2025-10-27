@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Util\CCRC32.H" />
     <ClInclude Include="Achievements.h" />
+    <ClInclude Include="AdvancedFPSManager.h" />
     <ClInclude Include="allocator.h" />
     <ClInclude Include="Antilag.h" />
     <ClInclude Include="array.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="GS_SEND_CLIENT.h" />
     <ClInclude Include="GuildLogo.h" />
+    <ClInclude Include="ImprovedHackCheck.h" />
     <ClInclude Include="InfoLog.h" />
     <ClInclude Include="CustomItem.h" />
     <ClInclude Include="Inter3.h" />
@@ -198,6 +200,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Offset.h" />
     <ClInclude Include="OffTrade.h" />
+    <ClInclude Include="OptimizedShaders.h" />
     <ClInclude Include="PacketManager.h" />
     <ClInclude Include="PartyBuffs.h" />
     <ClInclude Include="PartySearch.h" />
@@ -249,6 +252,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Util\CCRC32.Cpp" />
     <ClCompile Include="Achievements.cpp" />
+    <ClCompile Include="AdvancedFPSManager.cpp" />
     <ClCompile Include="Antilag.cpp" />
     <ClCompile Include="AutoLoginWin.cpp" />
     <ClCompile Include="BuffIcon.cpp" />
@@ -292,6 +296,7 @@
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="GS_SEND_CLIENT.cpp" />
     <ClCompile Include="GuildLogo.cpp" />
+    <ClCompile Include="ImprovedHackCheck.cpp" />
     <ClCompile Include="InfoLog.cpp" />
     <ClCompile Include="CustomItem.cpp" />
     <ClCompile Include="Inter3.cpp" />
@@ -347,6 +352,7 @@
     <ClCompile Include="NewUIMyInventory.cpp" />
     <ClCompile Include="NPCRuud.cpp" />
     <ClCompile Include="OffTrade.cpp" />
+    <ClCompile Include="OptimizedShaders.cpp" />
     <ClCompile Include="PacketManager.cpp" />
     <ClCompile Include="PartyBuffs.cpp" />
     <ClCompile Include="PartySearch.cpp" />

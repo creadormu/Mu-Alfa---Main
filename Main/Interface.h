@@ -543,7 +543,7 @@ public:
 	bool EventDrawMenu_Open(DWORD Event);
 	void OpenWindowMenu();
 
-	void		OpenMenuWindow() { this->Data[eMenu_MAIN].OnShow = true;};// pSetCursorFocus = true; };
+	void OpenMenuWindow() { this->Data[eMenu_MAIN].OnShow = true;};// pSetCursorFocus = true; };
 
 	void CloseMenuWindow() {this->Data[eMenu_MAIN].OnShow = false; };
 	bool CheckMenuWindow() { return this->Data[eMenu_MAIN].OnShow; };
