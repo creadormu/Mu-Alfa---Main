@@ -1,0 +1,368 @@
+================================================================================
+   HIGH FPS OPTIMIZATION SYSTEM - ARCHITECTURE DIAGRAM
+================================================================================
+
+OVERVIEW:
+---------
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                         MU ONLINE CLIENT                             │
+│                                                                       │
+│  ┌────────────────────────────────────────────────────────────┐    │
+│  │                    GAME LOOP                                │    │
+│  │                                                             │    │
+│  │  1. gAdvancedFPSManager.Update()  ◄── Calculate timing     │    │
+│  │     │                                                       │    │
+│  │     ├─► Delta Time = 16.67ms (at 60 FPS)                  │    │
+│  │     ├─► Frame Multiplier = 0.417                          │    │
+│  │     └─► Interpolation Alpha = 0.5                         │    │
+│  │                                                             │    │
+│  │  2. Update Game Logic                                      │    │
+│  │     │                                                       │    │
+│  │     ├─► Movement *= FrameMultiplier                       │    │
+│  │     ├─► Animation *= FrameMultiplier                      │    │
+│  │     └─► Physics uses DeltaTime                            │    │
+│  │                                                             │    │
+│  │  3. Render Frame                                           │    │
+│  │     │                                                       │    │
+│  │     ├─► Enable Shaders (if available)                     │    │
+│  │     ├─► Render at interpolated position                   │    │
+│  │     └─► Disable Shaders                                   │    │
+│  │                                                             │    │
+│  │  4. CheckTickCount2_Improved                               │    │
+│  │     │                                                       │    │
+│  │     ├─► Check elapsed time                                 │    │
+│  │     ├─► Compare with g_DynamicFPSLimit                    │    │
+│  │     ├─► Verify speed modifiers (anti-cheat)              │    │
+│  │     └─► Sleep if needed                                   │    │
+│  │                                                             │    │
+│  │  5. SwapBuffers() → Display to screen                     │    │
+│  │                                                             │    │
+│  │  6. Loop back to step 1                                    │    │
+│  └────────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────────┘
+
+
+COMPONENT INTERACTION:
+----------------------
+
+┌──────────────────┐
+│   Main.cpp       │
+│   EntryProc()    │
+└────────┬─────────┘
+         │
+         ├─► Initialize gAdvancedFPSManager
+         ├─► Initialize gOptimizedShaders  
+         └─► Setup Improved HackCheck hooks
+                     │
+    ┌────────────────┴─────────────────┐
+    │                                  │
+    ▼                                  ▼
+┌─────────────────────┐     ┌──────────────────────┐
+│ AdvancedFPSManager  │     │ ImprovedHackCheck    │
+├─────────────────────┤     ├──────────────────────┤
+│ - Update()          │     │ - CheckTickCount1    │
+│ - GetDeltaTime()    │     │ - CheckTickCount2    │
+│ - GetMultiplier()   │     │ - SetDynamicFPS()    │
+│ - GetCurrentFPS()   │     │ - Verify Security    │
+└──────────┬──────────┘     └──────────┬───────────┘
+           │                           │
+           │     ┌────────────────────┐│
+           └────►│  User.cpp          ││
+                 │  Refresh()         ││
+                 ├────────────────────┤│
+                 │ Gets frameMultiplier│
+                 │ Applies to speeds  ││
+                 └────────────────────┘│
+                           │            │
+                           ▼            ▼
+                    ┌──────────────────────┐
+                    │   Game Rendering     │
+                    │                      │
+                    │ OptimizedShaders     │
+                    │ - Vertex Shader      │
+                    │ - Fragment Shader    │
+                    │ - GPU Acceleration   │
+                    └──────────────────────┘
+
+
+DATA FLOW:
+----------
+
+Time Information:
+┌────────────┐
+│ GetTickCount│
+└──────┬─────┘
+       │
+       ▼
+┌───────────────────┐      ┌─────────────┐
+│ CurrentFrameTime  │─────►│ DeltaTime   │
+│ LastFrameTime     │      │ = Current - │
+│                   │      │   Last      │
+└───────────────────┘      └──────┬──────┘
+                                  │
+                                  ▼
+                          ┌────────────────┐
+                          │ FrameMultiplier│
+                          │ = DeltaTime /  │
+                          │   40ms         │
+                          └───────┬────────┘
+                                  │
+                                  ▼
+                           ┌──────────────┐
+                           │ Apply to:    │
+                           │ - Movement   │
+                           │ - Animation  │
+                           │ - Effects    │
+                           └──────────────┘
+
+
+Security Flow:
+┌──────────────────┐
+│ Game starts      │
+└────────┬─────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│ Read LimitFPS from      │
+│ config (e.g., 60)       │
+└────────┬────────────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│ SetDynamicFPSLimit(60)  │
+│ → g_DynamicFPSLimit=16ms│
+└────────┬────────────────┘
+         │
+         ▼
+┌─────────────────────────┐       ┌──────────────────┐
+│ Each frame:             │       │ HackCheck        │
+│ CheckTickCount2_Improved│──────►│ compares with    │
+│                         │       │ g_DynamicFPSLimit│
+└─────────────────────────┘       └────────┬─────────┘
+                                           │
+                         ┌─────────────────┴──────────────────┐
+                         │                                    │
+                         ▼                                    ▼
+                  ┌─────────────┐                    ┌──────────────┐
+                  │ Within limit│                    │ Outside limit│
+                  │ Continue    │                    │ OR           │
+                  │ playing     │                    │ Speed modif. │
+                  └─────────────┘                    │ changed      │
+                                                     │ → ExitProcess│
+                                                     └──────────────┘
+
+
+FPS COMPARISON:
+---------------
+
+Original System (25 FPS):
+┌────┬────┬────┬────┬────┬────┬────┬────┬─── 
+│ 40 │ 40 │ 40 │ 40 │ 40 │ 40 │ 40 │ 40 │ ...  ← Frame time (ms)
+└────┴────┴────┴────┴────┴────┴────┴────┴───
+ Frame times: All 40ms
+ Frames per second: 1000/40 = 25 FPS
+ Movement per frame: 4 units
+ Total movement per second: 25 * 4 = 100 units
+
+New System (60 FPS):
+┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──
+│16│16│16│16│16│16│16│16│16│16│16│16│16│16│16│16│16│ ...
+└──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──
+ Frame times: All ~16.67ms
+ Frames per second: 1000/16.67 = 60 FPS
+ Movement per frame: 4 * 0.417 = 1.67 units
+ Total movement per second: 60 * 1.67 = 100 units ← SAME!
+
+Visual smoothness: 
+25 FPS: ●─────●─────●─────●─────●      (choppy)
+60 FPS: ●──●──●──●──●──●──●──●──●      (smooth!)
+
+
+MEMORY LAYOUT:
+--------------
+
+Original HackCheck:
+┌──────────────────────────────────┐
+│ Address: 0x004DA3E0              │
+│ Value: 0x28 (40 decimal = 40ms)  │ ← Hardcoded!
+│ Purpose: Frame time limit        │
+└──────────────────────────────────┘
+
+Our System:
+┌──────────────────────────────────┐
+│ Variable: g_DynamicFPSLimit      │
+│ Value: 16 (for 60 FPS)           │ ← Configurable!
+│        8 (for 120 FPS)           │
+│        40 (for 25 FPS original)  │
+│ Purpose: Dynamic frame limit     │
+└──────────────────────────────────┘
+
+Speed Modifiers (Monitored by HackCheck):
+┌────────────────────────────────────────┐
+│ SpeedModifier1: Viewport[0x214]        │ ← Not modified!
+│ SpeedModifier2: Viewport[0x218]        │ ← Not modified!
+│ ModelModifier1: Viewport[0x31A]        │ ← Not modified!
+│ ModelModifier2: Viewport[0x394]        │ ← Not modified!
+│ ModelModifier3: Viewport[0x398]        │ ← Not modified!
+└────────────────────────────────────────┘
+These stay the same → No hack detection!
+
+Our Math (Not in memory, just calculation):
+┌────────────────────────────────────────┐
+│ frameMultiplier = DeltaTime / 40       │ ← Calculated!
+│ scaledSpeed = originalSpeed * multiplier│ ← Applied!
+└────────────────────────────────────────┘
+Memory not modified → Safe!
+
+
+SHADER PIPELINE:
+----------------
+
+Without Shaders (Original):
+┌──────────┐
+│ CPU      │
+│          │
+│ Process  │─────► Render to screen (slow)
+│ vertices │
+│          │
+└──────────┘
+
+With Optimized Shaders:
+┌──────────┐                    ┌──────────┐
+│ CPU      │                    │ GPU      │
+│          │                    │          │
+│ Send data├──────────────────►│ Vertex   │
+│          │                    │ Shader   │
+└──────────┘                    │   ↓      │
+                                │ Fragment │
+                                │ Shader   │──► Screen (fast!)
+                                │   ↓      │
+                                │ Output   │
+                                └──────────┘
+
+Benefits:
+- CPU offloads work to GPU
+- Parallel processing
+- Optimized calculations
+- Better visual quality
+- Higher FPS possible
+
+
+FILE DEPENDENCIES:
+------------------
+
+Main.cpp
+  │
+  ├─► #include "AdvancedFPSManager.h"
+  │     │
+  │     └─► Provides: gAdvancedFPSManager
+  │
+  ├─► #include "ImprovedHackCheck.h"
+  │     │
+  │     └─► Provides: CheckTickCount1_Improved
+  │                    CheckTickCount2_Improved
+  │                    SetDynamicFPSLimit()
+  │
+  └─► #include "OptimizedShaders.h"
+        │
+        └─► Provides: gOptimizedShaders
+
+User.cpp
+  │
+  └─► Uses: gAdvancedFPSManager.GetFrameMultiplier()
+
+
+TIMING COMPARISON TABLE:
+-------------------------
+
+┌─────────┬──────────────┬────────────┬─────────────────┐
+│   FPS   │  Frame Time  │ Our Value  │   Usage         │
+├─────────┼──────────────┼────────────┼─────────────────┤
+│   25    │   40.00 ms   │   0x28     │ Original        │
+│   30    │   33.33 ms   │   0x21     │ Minimum smooth  │
+│   60    │   16.67 ms   │   0x10     │ Recommended     │
+│  120    │    8.33 ms   │   0x08     │ High refresh    │
+│  144    │    6.94 ms   │   0x07     │ 144Hz monitor   │
+│  240    │    4.17 ms   │   0x04     │ Competitive     │
+└─────────┴──────────────┴────────────┴─────────────────┘
+
+
+DECISION FLOW:
+--------------
+
+Start
+  │
+  ▼
+Read config LimitFPS
+  │
+  ├─► 60? → g_DynamicFPSLimit = 16 (0x10)
+  ├─► 120? → g_DynamicFPSLimit = 8 (0x08)
+  ├─► 25? → g_DynamicFPSLimit = 40 (0x28)
+  └─► Other? → Calculate appropriate value
+      │
+      ▼
+Each frame:
+  │
+  ├─► Calculate deltaTime
+  ├─► Calculate frameMultiplier
+  ├─► Update game logic with scaled values
+  ├─► Render
+  └─► HackCheck validates timing
+      │
+      ├─► If elapsed < limit: Sleep(difference)
+      └─► If speed modifiers changed: ExitProcess()
+
+
+INTEGRATION POINTS:
+-------------------
+
+[Main.cpp]
+  Line ~175: Initialize FPS system
+  Line ~271: Replace CheckTickCount1 hook
+  Line ~273: Replace CheckTickCount2 hook
+  Line ~411: Remove old InitHackCheck
+
+[User.cpp]  
+  Line ~54: Add frameMultiplier
+  Line ~58: Apply to pFrameSpeed1
+  Line ~63: Apply to pFrameSpeed2
+
+[Game Loop]
+  Unknown location: Add gAdvancedFPSManager.Update()
+  (Search for SwapBuffers to find it)
+
+
+SUCCESS INDICATORS:
+-------------------
+
+✓ FPS counter shows target FPS (e.g., 60)
+✓ Movement speed feels same as original
+✓ No "Speed Hack" detection
+✓ Smooth animations
+✓ Responsive controls
+✓ Stable frame times
+✓ No crashes
+
+
+FAILURE INDICATORS:
+-------------------
+
+✗ Characters move too fast → Missing frameMultiplier
+✗ FPS stuck at 25 → Old hooks still active
+✗ Game crashes → Missing includes
+✗ Shaders not working → GPU issue (not critical)
+✗ FPS unstable → Lower target or enable VSync
+
+
+================================================================================
+                        END OF ARCHITECTURE DIAGRAM
+================================================================================
+
+For more details, see:
+- FPS_OPTIMIZATION_README.md - User guide
+- TECHNICAL_EXPLANATION.md - Deep dive
+- QUICK_START.txt - Quick integration
+- IMPLEMENTATION_SUMMARY.md - Complete overview
+
+================================================================================

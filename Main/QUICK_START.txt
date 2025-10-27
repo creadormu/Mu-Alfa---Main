@@ -1,0 +1,136 @@
+================================================================================
+   MU ONLINE HIGH FPS OPTIMIZATION - QUICK START GUIDE
+================================================================================
+
+WHAT THIS DOES:
+---------------
+Increases your game FPS from 25 to 60, 120, or higher while keeping
+characters and monsters moving at normal speed (no speed hacks).
+
+WHAT YOU GET:
+-------------
+✓ Smooth 60/120 FPS gameplay
+✓ No movement speed issues
+✓ Optimized shaders for better graphics
+✓ Compatible with HackCheck
+✓ Easy configuration
+
+FILES ADDED:
+------------
+1. AdvancedFPSManager.h / .cpp      - Frame timing system
+2. ImprovedHackCheck.h / .cpp       - Modified anti-cheat for high FPS
+3. OptimizedShaders.h / .cpp        - GPU-accelerated rendering
+4. FPSIntegrationGuide.h            - Detailed integration instructions
+5. FPS_OPTIMIZATION_README.md       - Complete documentation
+6. ExampleMainIntegration.cpp       - Code examples
+7. QUICK_START.txt                  - This file
+
+INSTALLATION (5 MINUTES):
+-------------------------
+
+Step 1: Add files to Visual Studio project
+   - Add all .h and .cpp files to your Main project
+   - Compile to check for errors
+
+Step 2: Edit Main.cpp
+   - Add includes at top:
+     #include "AdvancedFPSManager.h"
+     #include "ImprovedHackCheck.h"
+     #include "OptimizedShaders.h"
+   
+   - In EntryProc(), after loading files, add:
+     gAdvancedFPSManager.Initialize(60);
+     gOptimizedShaders.Initialize();
+   
+   - Replace HackCheck hooks:
+     OLD: SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+     NEW: SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1_Improved);
+     
+     OLD: SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
+     NEW: SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2_Improved);
+
+Step 3: Edit User.cpp
+   - In User::Refresh(), find the SetDouble calls
+   - Add: float frameMultiplier = gAdvancedFPSManager.GetFrameMultiplier();
+   - Multiply frame speeds by frameMultiplier
+
+Step 4: Add update to game loop
+   - Find main loop (search for "SwapBuffers")
+   - Add at start: gAdvancedFPSManager.Update();
+
+Step 5: Configure FPS in your config file
+   - Set LimitFPS = 60 (or 120, 144, etc.)
+
+Step 6: Compile and test!
+
+RECOMMENDED SETTINGS:
+--------------------
+First time:  LimitFPS = 60
+Good PC:     LimitFPS = 120
+Gaming PC:   LimitFPS = 144
+Competitive: LimitFPS = 240
+
+TROUBLESHOOTING:
+----------------
+Q: Characters move too fast?
+A: Check that you added frameMultiplier in User.cpp
+
+Q: FPS not changing?
+A: Make sure you replaced HackCheck hooks with improved versions
+
+Q: Game crashes?
+A: Verify all includes are correct and files are in project
+
+Q: Shaders not working?
+A: Update GPU drivers or disable shaders (game still works)
+
+TESTING:
+--------
+1. Start game at 60 FPS
+2. Walk around - should feel smoother than before
+3. Test combat - attacks should be normal speed
+4. Test with monsters - they should move normally
+5. Try 120 FPS if 60 works well
+
+PERFORMANCE:
+------------
+60 FPS:  Low-end to mid-range PCs
+120 FPS: Mid-range to high-end PCs
+144 FPS: High-end gaming PCs with 144Hz monitor
+240 FPS: Top-tier gaming setup with 240Hz monitor
+
+For best experience:
+- Enable VSync if you see screen tearing
+- Use 60 FPS as baseline
+- Only go higher if your GPU can handle it
+
+WHERE TO GET HELP:
+------------------
+1. Read FPS_OPTIMIZATION_README.md for detailed info
+2. Check FPSIntegrationGuide.h for code examples
+3. Look at ExampleMainIntegration.cpp for patterns
+4. Test one step at a time
+
+WHAT IF IT DOESN'T WORK:
+------------------------
+The system is designed to be safe. If something fails:
+- Shaders will be disabled (game continues without them)
+- FPS will fall back to safe values
+- HackCheck security remains active
+
+You can also revert by:
+1. Removing the new files
+2. Restoring original HackCheck hooks
+3. Removing frameMultiplier from User.cpp
+
+FINAL NOTES:
+------------
+- Start with 60 FPS, not 120
+- Test thoroughly before using on live server
+- Monitor CPU/GPU temperature
+- Enable VSync if tearing occurs
+- Enjoy smooth gameplay!
+
+================================================================================
+   ENJOY YOUR HIGH FPS MU ONLINE! 🎮
+================================================================================
