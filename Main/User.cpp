@@ -15,6 +15,8 @@
 #include "AdvancedFPSManager.h"
 #include "ImprovedHackCheck.h"
 #include "OptimizedShaders.h"
+#include "FPSManagerHook.h"
+
 
 User gObjUser;
 
@@ -32,6 +34,7 @@ void User::Load()
 void User::Refresh()
 {
 	
+
 	this->lpPlayer			= &*(ObjectCharacter*)oUserObjectStruct;
 	this->lpViewPlayer		= &*(ObjectPreview*)oUserPreviewStruct;
 	this->GetTarget();
@@ -56,6 +59,9 @@ void User::Refresh()
 
 	// NEW CODE (Add this):
 	float frameMultiplier = gAdvancedFPSManager.GetFrameMultiplier();
+
+	this->lpPlayer = &*(ObjectCharacter*)oUserObjectStruct;
+
 
 	if (gObjUser.GetActiveSkill() == 261 ||
 		gObjUser.GetActiveSkill() == 552 ||

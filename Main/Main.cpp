@@ -17,7 +17,13 @@
 #include "StaticEffect.h"
 #include "DynamicEffect.h"
 #include "HackCheck.h"
+#include "AdvancedFPSManager.h"
+#include "ImprovedHackCheck.h"
+#include "OptimizedShaders.h"
+#include "FPSManagerHook.h"
 #include "HealthBar.h"
+
+
 #include "Item.h"
 #include "ItemShopValue.h" 
 #include "ItemSmoke.h"
@@ -90,9 +96,8 @@
 #include "GuildLogo.h"
 #include "LoginMainWin.h"
 #include "AutoLoginWin.h"
-#include "AdvancedFPSManager.h"
-#include "ImprovedHackCheck.h"
-#include "OptimizedShaders.h"
+#include "FPSManagerHook.h"
+
 
 
 
@@ -275,10 +280,8 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 
 	SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
 
-	//SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+	// HIGH FPS SYSTEM - Use improved hooks
 	SetCompleteHook(0xE9, 0x004DA280, &CheckTickCount1_Improved);
-
-	//SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
 	SetCompleteHook(0xE9, 0x004DA3A1, &CheckTickCount2_Improved);
 
 	SetCompleteHook(0xE8,0x005B96E8,&DrawNewHealthBar);
@@ -417,16 +420,17 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 
 	gProtect.CheckCameraFile();
 
-	//InitHackCheck();
-
-	// NEW: HIGH FPS SYSTEM INITIALIZATION
+	// ========== HIGH FPS SYSTEM INITIALIZATION ==========
 	int targetFPS = gProtect.m_MainInfo.LimitFPS;
 	if (targetFPS <= 0 || targetFPS < 25) targetFPS = 60;
 
 	gAdvancedFPSManager.Initialize(targetFPS);
-	bool shadersLoaded = gOptimizedShaders.Initialize();
+	gOptimizedShaders.Initialize();
+	InitFPSManagerHook();  // Hook main loop for FPS updates
+	// ====================================================
 
 	gTrayMode.Load();
+
 
 	InitCommon();
 

@@ -227,7 +227,7 @@ void CUIMng::RenderTitleSceneUI(int This, HDC hDC, DWORD dwNow, DWORD dwTotal)
 	glFlush();
 	SwapBuffers(hDC);
 
-	gAdvancedFPSManager.Update();
+	//gAdvancedFPSManager.Update();
 
 }
 

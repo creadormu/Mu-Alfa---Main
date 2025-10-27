@@ -131,6 +131,7 @@
     <ClInclude Include="EmojiSystem.h" />
     <ClInclude Include="ExQuestWinSystem.h" />
     <ClInclude Include="FloatCharInfo.h" />
+    <ClInclude Include="FPSManagerHook.h" />
     <ClInclude Include="GetBarPlayer.h" />
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="GS_SEND_CLIENT.h" />
@@ -292,6 +293,7 @@
     <ClCompile Include="EmojiSystem.cpp" />
     <ClCompile Include="ExQuestWinSystem.cpp" />
     <ClCompile Include="FloatCharInfo.cpp" />
+    <ClCompile Include="FPSManagerHook.cpp" />
     <ClCompile Include="GetBarPlayer.cpp" />
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="GS_SEND_CLIENT.cpp" />
