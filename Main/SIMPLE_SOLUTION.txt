@@ -1,0 +1,166 @@
+================================================================================
+               🚀 SIMPLE SOLUTION - CHARACTER SELECT FREEZE
+================================================================================
+
+THE PROBLEM:
+------------
+You put gAdvancedFPSManager.Update() in User::Refresh()
+But this function is NOT called during login/character selection!
+Result: Game freezes at "loading..."
+
+THE FIX:
+--------
+I created 2 files that hook the MAIN rendering loop:
+  • FPSManagerHook.h  (already created)
+  • FPSManagerHook.cpp (already created)
+
+These ensure FPS manager updates in ALL game states!
+
+================================================================================
+                          QUICK FIX - 3 STEPS
+================================================================================
+
+STEP 1: ADD FILES TO PROJECT
+-----------------------------
+In Visual Studio:
+  Right-click project → Add → Existing Item
+  
+  Add these files:
+    /workspace/Main/FPSManagerHook.h
+    /workspace/Main/FPSManagerHook.cpp
+
+
+STEP 2: MODIFY Main.cpp - ADD ONE LINE
+---------------------------------------
+Find line ~19:
+    #include "HackCheck.h"
+    
+Add AFTER it:
+    #include "AdvancedFPSManager.h"
+    #include "ImprovedHackCheck.h"
+    #include "OptimizedShaders.h"
+    #include "FPSManagerHook.h"        ← ADD THIS
+
+
+Find line ~411 (after gProtect.CheckCameraFile()):
+    InitHackCheck();
+    
+Replace with:
+    int targetFPS = gProtect.m_MainInfo.LimitFPS;
+    if (targetFPS <= 0 || targetFPS < 25) targetFPS = 60;
+    gAdvancedFPSManager.Initialize(targetFPS);
+    gOptimizedShaders.Initialize();
+    InitFPSManagerHook();  ← ADD THIS CALL
+
+
+Find line ~271-273:
+    SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+    SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
+
+Replace with:
+    SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1_Improved);
+    SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2_Improved);
+
+
+STEP 3: MODIFY User.cpp - REMOVE ONE LINE
+------------------------------------------
+Find in User::Refresh():
+    gAdvancedFPSManager.Update();  ← DELETE THIS LINE
+
+(Keep the frame multiplier code, just remove the Update() call)
+
+
+THAT'S IT! Compile and run.
+
+================================================================================
+                              WHAT I DID
+================================================================================
+
+Created FPSManagerHook.cpp that hooks address 0x004DA2AC (main rendering loop).
+
+This address is called EVERY frame in:
+  ✓ Login screen
+  ✓ Character selection
+  ✓ Gameplay
+
+So FPS manager now updates in ALL states!
+
+BEFORE:
+  Login → No Update() → Freeze ✗
+
+AFTER:
+  Login → Hook calls Update() → Works ✓
+
+================================================================================
+                         OR USE THIS ALTERNATIVE
+================================================================================
+
+If you don't want to use hooks, you can also:
+
+1. Add this include to CSCharacterS13.cpp:
+    #include "AdvancedFPSManager.h"
+
+2. Find the character select rendering function (around line 100-600)
+
+3. Add at the start of the render function:
+    gAdvancedFPSManager.Update();
+
+This will update FPS during character select specifically.
+
+================================================================================
+                            FILES SUMMARY
+================================================================================
+
+Created for you:
+  ✅ FPSManagerHook.h
+  ✅ FPSManagerHook.cpp
+  ✅ FIX_FOR_CHARACTER_SELECT_FREEZE.txt (detailed guide)
+  ✅ SIMPLE_SOLUTION.txt (this file)
+
+Modified by you (need changes):
+  ⚠️ Main.cpp - Add include and hook initialization
+  ⚠️ User.cpp - Remove duplicate Update() call
+
+Already in project (no changes needed):
+  ✅ AdvancedFPSManager.h/.cpp
+  ✅ ImprovedHackCheck.h/.cpp
+  ✅ OptimizedShaders.h/.cpp
+
+================================================================================
+                          TEST AFTER COMPILING
+================================================================================
+
+Run game and verify:
+  ✓ Login screen appears
+  ✓ Can enter username/password
+  ✓ Character selection appears ← Should work now!
+  ✓ Can select character
+  ✓ Game loads
+  ✓ Runs at 60 FPS
+
+If character select still freezes, add this debug to FPSManagerHook.cpp:
+
+After gAdvancedFPSManager.Update(), add:
+    static int count = 0;
+    if (++count % 100 == 0)  // Every 100 frames
+    {
+        char msg[64];
+        sprintf(msg, "Hook called %d times", count);
+        OutputDebugString(msg);
+    }
+
+Check Visual Studio Output window - should see messages during character select.
+
+================================================================================
+                              NEED HELP?
+================================================================================
+
+Read the full guide:
+  FIX_FOR_CHARACTER_SELECT_FREEZE.txt
+
+Or check your GitHub commit:
+  https://github.com/creadormu/Mu-Alfa---Main/commit/d09239876b71d32bb6280436e660bc9291bacc3e
+
+The solution is simple: Hook the main loop so FPS updates in ALL game states!
+
+================================================================================

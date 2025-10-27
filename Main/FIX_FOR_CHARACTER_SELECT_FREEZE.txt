@@ -1,0 +1,307 @@
+================================================================================
+          🔧 FIX FOR CHARACTER SELECT FREEZE - MANUAL STEPS
+================================================================================
+
+PROBLEM:
+--------
+Game compiles and runs, but freezes at "loading..." after login.
+Character selection screen never appears.
+
+ROOT CAUSE:
+-----------
+gAdvancedFPSManager.Update() was only in User::Refresh(), which is NOT called
+during login or character selection! The FPS manager never updates, causing
+the game to freeze.
+
+SOLUTION:
+---------
+Hook the main rendering loop (0x004DA2AC) which is called EVERY frame in ALL
+game states (login, character select, gameplay, etc.)
+
+================================================================================
+                            STEP-BY-STEP FIX
+================================================================================
+
+STEP 1: Add new files to project
+---------------------------------
+Add these 2 new files I created:
+  • FPSManagerHook.h
+  • FPSManagerHook.cpp
+
+They're already created in /workspace/Main/
+
+
+STEP 2: Modify Main.cpp - Add include
+--------------------------------------
+Find this line (around line 19):
+    #include "HackCheck.h"
+    #include "HealthBar.h"
+
+Change to:
+    #include "HackCheck.h"
+    #include "AdvancedFPSManager.h"
+    #include "ImprovedHackCheck.h"
+    #include "OptimizedShaders.h"
+    #include "FPSManagerHook.h"        ← ADD THIS LINE
+    #include "HealthBar.h"
+
+
+STEP 3: Modify Main.cpp - Initialize FPS hook
+----------------------------------------------
+Find this code (around line 411):
+    gProtect.CheckCameraFile();
+
+    InitHackCheck();
+
+    gTrayMode.Load();
+
+Replace with:
+    gProtect.CheckCameraFile();
+
+    // ========== HIGH FPS SYSTEM INITIALIZATION ==========
+    int targetFPS = gProtect.m_MainInfo.LimitFPS;
+    if (targetFPS <= 0 || targetFPS < 25) targetFPS = 60;
+    
+    gAdvancedFPSManager.Initialize(targetFPS);
+    gOptimizedShaders.Initialize();
+    InitFPSManagerHook();  // Hook main loop for FPS updates
+    // ====================================================
+
+    gTrayMode.Load();
+
+
+STEP 4: Modify Main.cpp - Replace hooks
+----------------------------------------
+Find this code (around line 271-273):
+    SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
+
+    SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1);
+
+    SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2);
+
+Replace with:
+    SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
+
+    // HIGH FPS SYSTEM - Use improved hooks
+    SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1_Improved);
+    SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2_Improved);
+
+
+STEP 5: Modify User.cpp - Remove duplicate update
+--------------------------------------------------
+Find this code in User::Refresh() (around line 30):
+    void User::Refresh()
+    {
+        // ========== HIGH FPS SYSTEM UPDATE ==========
+        // Update FPS manager every frame for accurate timing
+        gAdvancedFPSManager.Update();
+        // ============================================
+        
+        this->lpPlayer = &*(ObjectCharacter*)oUserObjectStruct;
+
+Replace with:
+    void User::Refresh()
+    {
+        // Note: gAdvancedFPSManager.Update() is now called via hook
+        // in the main rendering loop at 0x004DA2AC
+        
+        this->lpPlayer = &*(ObjectCharacter*)oUserObjectStruct;
+
+
+STEP 6: Keep User.cpp frame multiplier
+---------------------------------------
+Make sure User::Refresh() STILL HAS the frame multiplier code:
+
+    float frameMultiplier = gAdvancedFPSManager.GetFrameMultiplier();
+    
+    if ( gObjUser.GetActiveSkill() == 261 || 
+         gObjUser.GetActiveSkill() == 552 || 
+         gObjUser.GetActiveSkill() == 555 )
+    {
+        SetDouble(&pFrameSpeed1, 0.0004000 * frameMultiplier);
+        SetDouble(&pFrameSpeed2, 0.0002000 * frameMultiplier);
+    }
+    else
+    {
+        SetDouble(&pFrameSpeed1, 0.0040000 * frameMultiplier);
+        SetDouble(&pFrameSpeed2, 0.0020000 * frameMultiplier);
+    }
+
+================================================================================
+                              HOW IT WORKS
+================================================================================
+
+BEFORE (Broken):
+┌───────────────────────────────────────────────────┐
+│ Game starts                                        │
+│  ↓                                                 │
+│ Login screen (User::Refresh NOT called)           │
+│  ↓                                                 │
+│ Character select (User::Refresh NOT called)       │
+│  ↓                                                 │
+│ gAdvancedFPSManager.Update() NEVER called         │
+│  ↓                                                 │
+│ FPS manager never updates                         │
+│  ↓                                                 │
+│ FREEZE at loading screen ✗                        │
+└───────────────────────────────────────────────────┘
+
+AFTER (Fixed):
+┌───────────────────────────────────────────────────┐
+│ Game starts                                        │
+│  ↓                                                 │
+│ InitFPSManagerHook() - hook at 0x004DA2AC         │
+│  ↓                                                 │
+│ Login screen renders                               │
+│  → Main loop calls 0x004DA2AC                     │
+│  → Hook calls gAdvancedFPSManager.Update() ✓      │
+│  ↓                                                 │
+│ Character select renders                           │
+│  → Main loop calls 0x004DA2AC                     │
+│  → Hook calls gAdvancedFPSManager.Update() ✓      │
+│  ↓                                                 │
+│ Gameplay                                           │
+│  → Main loop calls 0x004DA2AC                     │
+│  → Hook calls gAdvancedFPSManager.Update() ✓      │
+│  ↓                                                 │
+│ Works in ALL game states! ✓                       │
+└───────────────────────────────────────────────────┘
+
+================================================================================
+                        WHAT THE HOOK DOES
+================================================================================
+
+FPSManagerHook.cpp creates a detour at address 0x004DA2AC:
+
+Original flow:
+  0x004DA2AC: [Original instruction]  → Continue game loop
+
+New flow with hook:
+  0x004DA2AC: JMP to FPSManagerHookFunction
+               ↓
+              Save registers (pushad/pushfd)
+               ↓
+              gAdvancedFPSManager.Update()  ← Update FPS timing
+               ↓
+              Restore registers (popfd/popad)
+               ↓
+              Execute original instruction
+               ↓
+              Return to game loop
+
+This ensures FPS manager updates in EVERY frame, regardless of game state!
+
+================================================================================
+                              FILES ADDED
+================================================================================
+
+1. FPSManagerHook.h
+   - Header for the hook function
+   - Declares InitFPSManagerHook()
+
+2. FPSManagerHook.cpp
+   - Implements the hook at 0x004DA2AC
+   - Calls gAdvancedFPSManager.Update() every frame
+   - Works in all game states (login, select, gameplay)
+
+================================================================================
+                         FILES TO MODIFY
+================================================================================
+
+1. Main.cpp
+   - Add #include "FPSManagerHook.h"
+   - Replace InitHackCheck() with FPS initialization + InitFPSManagerHook()
+   - Replace old hooks with _Improved versions
+
+2. User.cpp
+   - Remove gAdvancedFPSManager.Update() from Refresh()
+   - Keep frame multiplier code intact
+
+3. Visual Studio Project
+   - Add FPSManagerHook.h
+   - Add FPSManagerHook.cpp
+   - Rebuild
+
+================================================================================
+                           COMPILE AND TEST
+================================================================================
+
+After making these changes:
+
+1. Clean Solution
+2. Rebuild Solution
+3. Run game
+4. Should now:
+   ✓ Show login screen
+   ✓ Accept username/password
+   ✓ Show character selection ← THIS SHOULD NOW WORK!
+   ✓ Load into game
+   ✓ Run at 60 FPS with correct movement
+
+================================================================================
+                          WHY THIS FIXES IT
+================================================================================
+
+The hook at 0x004DA2AC is in the MAIN GAME LOOP which runs continuously:
+
+Login state: 0x004DA2AC is called → FPS manager updates ✓
+Character select: 0x004DA2AC is called → FPS manager updates ✓
+Gameplay: 0x004DA2AC is called → FPS manager updates ✓
+
+Before, we relied on User::Refresh() which is ONLY called during gameplay,
+so login and character select had no FPS updates = FREEZE.
+
+Now, the hook ensures EVERY game state gets FPS updates = NO FREEZE!
+
+================================================================================
+                           VERIFICATION
+================================================================================
+
+To verify it's working, add this debug code to FPSManagerHook.cpp:
+
+In FPSManagerHookFunction(), after gAdvancedFPSManager.Update():
+
+    static DWORD lastLog = 0;
+    if (GetTickCount() - lastLog > 5000)  // Every 5 seconds
+    {
+        float fps = gAdvancedFPSManager.GetCurrentFPS();
+        char msg[128];
+        sprintf(msg, "FPS: %.1f", fps);
+        MessageBox(0, msg, "FPS Hook Working", MB_OK);
+        lastLog = GetTickCount();
+    }
+
+You should see the message box appear during:
+- Login screen ✓
+- Character selection ✓  
+- Gameplay ✓
+
+If you see it in all states, the hook is working correctly!
+
+================================================================================
+                        ALTERNATIVE SOLUTION
+================================================================================
+
+If the hook approach doesn't work, you can also:
+
+1. Find where the character selection screen is rendered
+2. Add gAdvancedFPSManager.Update() there directly
+
+Files to check:
+  - CSCharacterS13.cpp (character select screen)
+  - MultiCharacter.cpp (character switching)
+  - Interface.cpp (main interface rendering)
+
+Search for functions called during character select and add the Update() there.
+
+================================================================================
+                              SUMMARY
+================================================================================
+
+Problem: Character select freeze (gAdvancedFPSManager.Update() not called)
+Solution: Hook main rendering loop at 0x004DA2AC
+Files: Add FPSManagerHook.h/.cpp, modify Main.cpp and User.cpp
+
+The hook ensures FPS manager works in ALL game states!
+
+================================================================================
