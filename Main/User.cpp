@@ -12,6 +12,7 @@
 #include "User.h"
 #include "PrintPlayer.h"
 #include "Camera.h"
+#include "AdvancedFPSManager.h"  // HIGH FPS SYSTEM
 
 User gObjUser;
 
@@ -28,6 +29,10 @@ void User::Load()
 
 void User::Refresh()
 {
+	// ========== HIGH FPS SYSTEM UPDATE ==========
+	// Update FPS manager every frame for accurate timing
+	gAdvancedFPSManager.Update();
+	// ============================================
 	
 	this->lpPlayer			= &*(ObjectCharacter*)oUserObjectStruct;
 	this->lpViewPlayer		= &*(ObjectPreview*)oUserPreviewStruct;
@@ -51,18 +56,25 @@ void User::Refresh()
 
 	sprintf(this->getName,"%s",gObjUser.lpPlayer->Name);
 
+	// ========== HIGH FPS FRAME SPEED COMPENSATION ==========
+	// Get frame multiplier to scale movement speeds based on actual FPS
+	float frameMultiplier = gAdvancedFPSManager.GetFrameMultiplier();
+	
 	if ( gObjUser.GetActiveSkill() == 261 || 
 		gObjUser.GetActiveSkill() == 552 || 
 		gObjUser.GetActiveSkill() == 555 )
 	{
-		SetDouble(&pFrameSpeed1, 0.0004000);
-		SetDouble(&pFrameSpeed2, 0.0002000);
+		// Rage Fighter skills - scale by frame multiplier
+		SetDouble(&pFrameSpeed1, 0.0004000 * frameMultiplier);
+		SetDouble(&pFrameSpeed2, 0.0002000 * frameMultiplier);
 	}
 	else
 	{
-		SetDouble(&pFrameSpeed1, 0.0040000);
-		SetDouble(&pFrameSpeed2, 0.0020000);
+		// Normal movement - scale by frame multiplier
+		SetDouble(&pFrameSpeed1, 0.0040000 * frameMultiplier);
+		SetDouble(&pFrameSpeed2, 0.0020000 * frameMultiplier);
 	}
+	// =======================================================
 }
 
 bool User::GetTarget()

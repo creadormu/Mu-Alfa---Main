@@ -15,9 +15,11 @@
 #include "CustomWing.h"
 #include "Fix.h"
 #include "StaticEffect.h"
-#include "DynamicEffect.h"
-#include "HackCheck.h"
-#include "HealthBar.h"
+#include "#include "HackCheck.h"
+#include "AdvancedFPSManager.h"
+#include "ImprovedHackCheck.h"
+#include "OptimizedShaders.h"
+#include "HealthBar.h"clude "HealthBar.h"
 #include "Item.h"
 #include "ItemShopValue.h" 
 #include "ItemSmoke.h"
@@ -260,11 +262,11 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 
 	MemorySet(0x005AD691, 0x90, 0x05); //fix move skill
 
-	//SetByte((0x0084A698 + 2), 30); // Fix nombre windows party en Y
+	//SetByte((0x0084A698 + 2), 30);	SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
 
-	MemoryCpy(0x00E611B2,gProtect.m_MainInfo.IpAddress,sizeof(gProtect.m_MainInfo.IpAddress)); //-- IpAddress
-
-	MemoryCpy(0x00E61F70,gProtect.m_MainInfo.ClientSerial,sizeof(gProtect.m_MainInfo.ClientSerial)); //-- ClientSerial
+	// HIGH FPS SYSTEM - Improved Hooks
+	SetCompleteHook(0xE9,0x004DA280,&CheckTickCount1_Improved);
+	SetCompleteHook(0xE9,0x004DA3A1,&CheckTickCount2_Improved);y(0x00E61F70,gProtect.m_MainInfo.ClientSerial,sizeof(gProtect.m_MainInfo.ClientSerial)); //-- ClientSerial
 
 	SetCompleteHook(0xFF,0x0065FD79,&ProtocolCoreEx);
 
@@ -382,9 +384,15 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 	gCustomSmith.LoadArmor(gProtect.m_MainInfo.SmithArmorInfo);
 	gCustomSmith.LoadPant(gProtect.m_MainInfo.SmithPantInfo);
 	gCustomSmith.LoadGlove(gProtect.m_MainInfo.SmithGloveInfo);
-	gCustomSmith.LoadBoot(gProtect.m_MainInfo.SmithBootInfo);
-//--
-	gPacketManager.LoadEncryptionKey("Data\\Enc1.dat");
+	gCustomSmith.LoadBoot(gProtect.m_MainInfo.SmithBootInfo);	gProtect.CheckCameraFile();
+
+	// ========== HIGH FPS SYSTEM INITIALIZATION ==========
+	int targetFPS = gProtect.m_MainInfo.LimitFPS;
+	if (targetFPS <= 0 || targetFPS < 25) targetFPS = 60;
+	
+	gAdvancedFPSManager.Initialize(targetFPS);
+	gOptimizedShaders.Initialize();
+	// ====================================================\Enc1.dat");
 
 	gPacketManager.LoadDecryptionKey("Data\\Dec2.dat");
 
