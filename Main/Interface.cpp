@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "Common.h"
 #include "CustomCommandInfo.h"
 #include "CustomEventTime.h"
@@ -6660,6 +6660,36 @@ void Interface::DrawChangingClassWindow()
 	// ----
 	pGetMoneyFormat((double)gChangeClass.m_Price,MoneyBuff, 0);
 	this->DrawFormat(eGold, StartX + 70, StartY + 272, 60, 1, "%s", MoneyBuff);
+	// ----
+	
+	// Display player's current balance based on currency type
+	if (gChangeClass.m_PriceType == 0)
+	{
+		// For Zen, get from character money
+		int CurrentZen = *(int*)0x07BC4F0C; // Character money address
+		pGetMoneyFormat((double)CurrentZen, MoneyBuff2, 0);
+		this->DrawFormat(eWhite, StartX + 30, StartY + 285, 210, 1, "Your Zen: %s", MoneyBuff2);
+	}
+	else if (gChangeClass.m_PriceType == 1)
+	{
+		// WCoinC
+		this->DrawFormat(eWhite, StartX + 30, StartY + 285, 210, 1, "Your %s: %d", gCustomMessage.GetMessage(6), this->m_LuckyWheelWCoinC);
+	}
+	else if (gChangeClass.m_PriceType == 2)
+	{
+		// WCoinP
+		this->DrawFormat(eWhite, StartX + 30, StartY + 285, 210, 1, "Your %s: %d", gCustomMessage.GetMessage(7), this->m_LuckyWheelWCoinP);
+	}
+	else if (gChangeClass.m_PriceType == 3)
+	{
+		// GoblinPoints
+		this->DrawFormat(eWhite, StartX + 30, StartY + 285, 210, 1, "Your %s: %d", gCustomMessage.GetMessage(13), this->m_LuckyWheelGPCoin);
+	}
+	else if (gChangeClass.m_PriceType == 4)
+	{
+		// Additional currency type (if any)
+		this->DrawFormat(eWhite, StartX + 30, StartY + 285, 210, 1, "Your %s: N/A", gCustomMessage.GetMessage(14));
+	}
 	// ----
 
 	// ----
