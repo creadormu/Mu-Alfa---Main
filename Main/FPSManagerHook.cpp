@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.h"  // MUST be first for precompiled headers
 #include "FPSManagerHook.h"
 #include "AdvancedFPSManager.h"
 #include "Util.h"

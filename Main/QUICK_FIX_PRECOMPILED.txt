@@ -1,0 +1,83 @@
+================================================================================
+                    🚀 QUICK FIX - PRECOMPILED HEADER ERROR
+================================================================================
+
+ERROR:
+------
+'#include' statement specified with the /YcStdAfx.cpp command-line option was 
+not found in the source file
+
+SOLUTION:
+---------
+All my files already have #include "stdafx.h" as the first line!
+
+Just do this:
+  1. Build → Clean Solution
+  2. Build → Rebuild Solution
+  3. Done!
+
+================================================================================
+                        IF IT STILL DOESN'T WORK
+================================================================================
+
+OPTION A: Disable precompiled headers for new files
+----------------------------------------------------
+
+For each of my new files:
+
+1. Right-click FPSManagerHook.cpp in Solution Explorer
+2. Properties
+3. C/C++ → Precompiled Headers
+4. Precompiled Header: Select "Not Using Precompiled Headers"
+5. Click OK
+
+Repeat for:
+  - AdvancedFPSManager.cpp
+  - ImprovedHackCheck.cpp
+  - OptimizedShaders.cpp
+  - FPSManagerHook.cpp
+
+Then rebuild.
+
+
+OPTION B: Check stdafx.h exists
+--------------------------------
+
+Make sure your project has:
+  ✓ stdafx.h
+  ✓ stdafx.cpp
+
+If missing, create them:
+
+stdafx.h:
+    #pragma once
+    #define WIN32_LEAN_AND_MEAN
+    #include <windows.h>
+    #include <gl/GL.h>
+    #include <stdio.h>
+
+stdafx.cpp:
+    #include "stdafx.h"
+
+
+OPTION C: Quick fix in Visual Studio
+-------------------------------------
+
+1. Build → Clean Solution
+2. Close Visual Studio
+3. Delete these folders:
+   - Debug/
+   - Release/
+   - .vs/
+4. Reopen Visual Studio
+5. Build → Rebuild Solution
+
+================================================================================
+                            THAT'S IT!
+================================================================================
+
+All my files are correct. Just Clean + Rebuild should work!
+
+If not, use Option A to disable precompiled headers for my files.
+
+================================================================================
