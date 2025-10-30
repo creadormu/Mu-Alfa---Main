@@ -96,7 +96,6 @@
 #include "GuildLogo.h"
 #include "LoginMainWin.h"
 #include "AutoLoginWin.h"
-#include "FPSManagerHook.h"
 
 
 
@@ -428,6 +427,7 @@ extern "C" _declspec(dllexport) void EntryProc() // OK
 	gOptimizedShaders.Initialize();
 	InitFPSManagerHook();  // Hook main loop for FPS updates
 	// ====================================================
+
 
 	gTrayMode.Load();
 

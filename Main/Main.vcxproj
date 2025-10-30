@@ -253,7 +253,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\Util\CCRC32.Cpp" />
     <ClCompile Include="Achievements.cpp" />
-    <ClCompile Include="AdvancedFPSManager.cpp" />
+    <ClCompile Include="AdvancedFPSManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Antilag.cpp" />
     <ClCompile Include="AutoLoginWin.cpp" />
     <ClCompile Include="BuffIcon.cpp" />
@@ -267,22 +270,34 @@
     <ClCompile Include="ChangeReset.cpp" />
     <ClCompile Include="ChatExpanded.cpp" />
     <ClCompile Include="CMacroUIEx.cpp" />
-    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Common.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ConnectServer.cpp" />
-    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Controller.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CriticalSection.cpp" />
     <ClCompile Include="CSCharacterS13.cpp" />
     <ClCompile Include="CSmithItem.cpp" />
     <ClCompile Include="CUIMng.cpp" />
     <ClCompile Include="CustomBow.cpp" />
-    <ClCompile Include="CustomBuyVip.cpp" />
+    <ClCompile Include="CustomBuyVip.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CustomCloak.cpp" />
-    <ClCompile Include="CustomCommandInfo.cpp" />
+    <ClCompile Include="CustomCommandInfo.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CustomEffectRemake.cpp" />
-    <ClCompile Include="CustomEventTime.cpp" />
-    <ClCompile Include="CustomFog.cpp" />
+    <ClCompile Include="CustomEventTime.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="CustomFog.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CustomFont.cpp" />
     <ClCompile Include="CustomGloves.cpp" />
     <ClCompile Include="CustomNPC.cpp" />
@@ -293,12 +308,20 @@
     <ClCompile Include="EmojiSystem.cpp" />
     <ClCompile Include="ExQuestWinSystem.cpp" />
     <ClCompile Include="FloatCharInfo.cpp" />
-    <ClCompile Include="FPSManagerHook.cpp" />
-    <ClCompile Include="GetBarPlayer.cpp" />
-    <ClCompile Include="GLFont.cpp" />
+    <ClCompile Include="FPSManagerHook.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="GetBarPlayer.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="GLFont.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="GS_SEND_CLIENT.cpp" />
     <ClCompile Include="GuildLogo.cpp" />
-    <ClCompile Include="ImprovedHackCheck.cpp" />
+    <ClCompile Include="ImprovedHackCheck.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="InfoLog.cpp" />
     <ClCompile Include="CustomItem.cpp" />
     <ClCompile Include="Inter3.cpp" />
@@ -309,25 +332,41 @@
     <ClCompile Include="CustomItemPrice.cpp" />
     <ClCompile Include="CustomJewel.cpp" />
     <ClCompile Include="CustomMap.cpp" />
-    <ClCompile Include="CustomMessage.cpp" />
+    <ClCompile Include="CustomMessage.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CustomMonster.cpp" />
     <ClCompile Include="CustomMonsterGlow.cpp" />
     <ClCompile Include="CustomNpcName.cpp" />
     <ClCompile Include="CustomPet.cpp" />
-    <ClCompile Include="CustomRanking.cpp" />
+    <ClCompile Include="CustomRanking.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="CustomRankUser.cpp" />
     <ClCompile Include="CustomWing.cpp" />
-    <ClCompile Include="DynamicEffect.cpp" />
+    <ClCompile Include="DynamicEffect.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Fix.cpp" />
-    <ClCompile Include="HackCheck.cpp" />
-    <ClCompile Include="HealthBar.cpp" />
+    <ClCompile Include="HackCheck.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="HealthBar.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="InterEx.cpp" />
-    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Interface.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemInfoEx.cpp" />
     <ClCompile Include="ItemRemake.cpp" />
-    <ClCompile Include="ItemShopValue.cpp" />
-    <ClCompile Include="ItemSmoke.cpp" />
+    <ClCompile Include="ItemShopValue.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="ItemSmoke.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="JCButton.cpp" />
     <ClCompile Include="JCOptionBox.cpp" />
     <ClCompile Include="JCRendernoItemGlow.cpp" />
@@ -338,7 +377,9 @@
     <ClCompile Include="LuckyWheesl.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MasterSkillPoint.cpp" />
-    <ClCompile Include="MemScript.cpp" />
+    <ClCompile Include="MemScript.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="MiniMapInfo.cpp" />
     <ClCompile Include="ModelEffect.cpp" />
@@ -353,9 +394,15 @@
     <ClCompile Include="NewUIButton.cpp" />
     <ClCompile Include="NewUIMyInventory.cpp" />
     <ClCompile Include="NPCRuud.cpp" />
-    <ClCompile Include="OffTrade.cpp" />
-    <ClCompile Include="OptimizedShaders.cpp" />
-    <ClCompile Include="PacketManager.cpp" />
+    <ClCompile Include="OffTrade.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="OptimizedShaders.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="PacketManager.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="PartyBuffs.cpp" />
     <ClCompile Include="PartySearch.cpp" />
     <ClCompile Include="PartySearchSettings.cpp" />
@@ -366,13 +413,23 @@
     <ClCompile Include="PetTooltip.cpp" />
     <ClCompile Include="postInterface.cpp" />
     <ClCompile Include="post_item.cpp" />
-    <ClCompile Include="PrintPlayer.cpp" />
-    <ClCompile Include="Protect.cpp" />
-    <ClCompile Include="Protocol.cpp" />
+    <ClCompile Include="PrintPlayer.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Protect.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Protocol.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="QuickCommandWindow.cpp" />
-    <ClCompile Include="Reconnect.cpp" />
+    <ClCompile Include="Reconnect.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="RegisterForm.cpp" />
-    <ClCompile Include="Resolution.cpp" />
+    <ClCompile Include="Resolution.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Ruud.cpp" />
     <ClCompile Include="SelectChar.cpp" />
     <ClCompile Include="ServerInfo.cpp" />
@@ -382,21 +439,32 @@
     <ClCompile Include="SItemSetOption.cpp" />
     <ClCompile Include="SmithItem.cpp" />
     <ClCompile Include="Speed.cpp" />
-    <ClCompile Include="StaticEffect.cpp" />
+    <ClCompile Include="StaticEffect.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="StatsAdvance.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="SwitchServer.cpp" />
-    <ClCompile Include="TMemory.cpp" />
-    <ClCompile Include="ToolKit.cpp" />
+    <ClCompile Include="TMemory.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="ToolKit.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="TrayModeNew.cpp" />
     <ClCompile Include="TuChanInterface.cpp" />
     <ClCompile Include="UIControl.cpp" />
     <ClCompile Include="UITextInputBox.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="User.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="WindowsStruct.cpp" />
     <ClCompile Include="zzzmathlib.cpp" />
   </ItemGroup>

@@ -11,34 +11,39 @@ static DWORD FPSManagerHookReturn = 0x004DA2AC + 5;
 
 __declspec(naked) void FPSManagerHookFunction()
 {
-	_asm
-	{
-		// Save registers
-		pushad
-		pushfd
-	}
-	
-	// Update FPS manager every frame
-	gAdvancedFPSManager.Update();
-	
-	_asm
-	{
-		// Restore registers
-		popfd
-		popad
-		
-		// Execute original code that was replaced
-		// (5 bytes at 0x004DA2AC)
-		// Original instruction will be here
-		
-		// Jump back
-		jmp [FPSManagerHookReturn]
-	}
-}
+    _asm
+    {
+        pushad
+        pushfd
+    }
 
+    // Solo actualizar si el juego está listo
+    if (gAdvancedFPSManager.IsReady())
+    {
+        gAdvancedFPSManager.Update();
+    }
+
+    _asm
+    {
+        popfd
+        popad
+
+        // IMPORTANTE: Ejecuta la instrucción original que reemplazaste
+        // Necesitas ver qué hay en 0x004DA2AC con un desensamblador
+        // Por ahora, dejo un placeholder - DEBES VERIFICAR ESTO
+        __emit 0x90  // NOP temporal - REEMPLAZA con instrucción real
+        __emit 0x90
+        __emit 0x90
+        __emit 0x90
+        __emit 0x90
+
+        jmp[FPSManagerHookReturn]
+    }
+}
 void InitFPSManagerHook()
 {
-	// Hook the main rendering call
-	// This is called every frame in all game states
-	SetCompleteHook(0xE9, 0x004DA2AC, &FPSManagerHookFunction);
+    SetCompleteHook(0xE9, 0x004DA2AC, &FPSManagerHookFunction);
+
+    // Inicializa después de un delay para dar tiempo a que cargue el juego
+    // O llama SetReady() cuando detectes que el personaje spawneó
 }

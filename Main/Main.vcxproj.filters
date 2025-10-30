@@ -794,9 +794,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HackCheck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -825,9 +822,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PrintPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomMessage.cpp">
@@ -1214,9 +1208,6 @@
     <ClCompile Include="CustomRankUser.cpp">
       <Filter>Source Files\Main\Map\SelectChar</Filter>
     </ClCompile>
-    <ClCompile Include="AdvancedFPSManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImprovedHackCheck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1224,6 +1215,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FPSManagerHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvancedFPSManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

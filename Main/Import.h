@@ -6,6 +6,13 @@
 #pragma comment(lib, "Opengl32.lib")
 #pragma comment(lib, "Ws2_32.lib")
 
+// Asegura que DWORD esté definido
+#ifndef DWORD
+typedef unsigned long DWORD;
+#endif
+
+
+
 #define sub_959CE0					((int(__cdecl*)(DWORD, DWORD)) 0x00959CE0)
 #define sub_95A1E0					((int(__cdecl*)(DWORD a1, DWORD a2, float *a3)) 0x0095A1E0)
 //-- Call

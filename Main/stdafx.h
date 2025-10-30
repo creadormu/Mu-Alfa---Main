@@ -24,6 +24,7 @@ typedef unsigned __int64 QWORD;
 #include <map>
 #include <Windows.h>
 
+
 #define va_start _crt_va_start
 #define va_arg _crt_va_arg
 #define va_end _crt_va_end
