@@ -1,0 +1,369 @@
+; BotPhrases.txt - Spanish (Español)
+; Frases que dicen los bots durante el juego
+; Formato: #CATEGORIA, probabilidad
+; Las frases, una por línea
+; Sistema de probabilidad optimizado para al menos 1 frase por categoría por hora
+
+; Probabilidades base para categorías dinámicas
+#MAP_BASE_PROB,20
+#CLASS_BASE_PROB,15
+
+; --- CATEGORÍAS GENERALES ---
+#GENERAL,8
+Buen día a todos
+Hola comunidad
+¿Alguien aquí?
+Saludos guerreros
+¿Cómo va todo?
+Entrenando duro
+Buscando acción
+¿Cómo están todos?
+Listo para la aventura
+Aquí y preparado
+
+#NEAR_REAL_PLAYER,18
+¡Hola amigo!
+¿Qué tal?
+¡Saludos!
+¿Cómo estás?
+¡Hola!
+¿Todo bien?
+Hola compañero
+¿Qué te trae por aquí?
+Gusto en verte
+¡Bienvenido!
+
+#IN_PARTY,22
+¡Excelente party!
+¡Vamos equipo!
+Buen trabajo a todos
+¡Sigan así!
+¡Gran equipo!
+Juntos somos más fuertes
+¿Listos para más?
+Perfecto, continuemos
+Vamos por más EXP
+Buen ritmo chicos
+
+#PVP,28
+¡Buena pelea!
+Eso fue intenso
+Buena batalla
+¡Eres fuerte!
+Gran combate
+Respeto guerrero
+¡Impresionante!
+Casi me ganas
+Buen duelo
+Eso fue épico
+
+#TRADE,25
+¡Busco {item_required}, intercambien conmigo!
+¡Necesito {item_required}, buen trato esperando!
+¡Compro {item_required} por {item_reward}!
+¡Cambio {item_required} -> {item_reward}!
+WTB: {item_required} = {item_reward}
+¿Alguien tiene {item_required}?
+¡Necesito {item_required}, tengo {item_reward}!
+¡{item_required} buscado, {item_reward} ofrecido!
+¡Cambia tu {item_required} aquí!
+Trade rápido: {item_required} -> {item_reward}
+
+#MORNING,12
+¡Buenos días!
+Gran inicio de día
+Mañana perfecta para entrenar
+Listo para el día
+Energía al máximo
+
+#AFTERNOON,12
+Buenas tardes
+Tarde productiva
+Hora de entrenar más
+Aún hay tiempo
+Mantengamos la energía
+
+#NIGHT,12
+Buenas noches
+Noche de aventuras
+La noche es joven
+Hora de acción
+Entrenamiento nocturno
+
+; --- FRASES ESPECÍFICAS DE CLASE ---
+#CLASS_0,15
+¡El Nova está cargando! ¡Corran, noobs!
+Mi staff es puro power, causa.
+¿Evil Spirit o Aquabeam? Qué dilema.
+¡Mis hechizos son bravos, primo!
+Teleport es mi pasatiempo, ¿ok?
+¡Siente mi Ice Storm, payaso!
+La magia está en mi sangre.
+¡Meteor cae con furia!
+¡Llama de destrucción!
+¡Flecha de hielo congela todo!
+
+#CLASS_16,15
+¡A filo de espada, compadre!
+¡Mi Twisting Slash te marea!
+¿Un combo? ¡Prepárate para el dolor!
+Esta armadura ha visto mil batallas.
+¡Un BK nunca retrocede! ¡Nunca!
+¡Death Stab! ¡Directo al corazón!
+Mi caballo es más rápido que tu miedo.
+¡Fuerza es mi segundo nombre, recuérdalo!
+¿Dragon Slayer? ¡Pan comido para mí!
+Mi leyenda se forja con cada victoria.
+
+#CLASS_32,15
+Mis flechas nunca fallan.
+La agilidad es mi fuerza.
+¡Multishot lista para disparar!
+La precisión élfica no tiene rival.
+¡Ice Arrow! ¡Congelado en el sitio!
+Del bosque traigo justicia.
+Mi arco canta la canción de la victoria.
+Velocidad y precisión combinadas.
+¡Shot penetrante viene!
+La naturaleza guía mis flechas.
+
+#CLASS_48,15
+¡Magic Gladiator listo para la acción!
+Espada y magia en perfecta armonía.
+¡Twisting Slash con poder mágico!
+Lo mejor de dos mundos.
+Mi hoja crepita con energía.
+¡Fire Slash corta y quema!
+Clase duelista, siempre listo.
+¡Cyclone devasta todo!
+¡Death Stab con mejora mágica!
+¡Mago cuerpo a cuerpo dominando!
+
+#CLASS_64,15
+¡Dark Lord comandando ejércitos!
+Mi cuervo trae muerte desde arriba.
+¡Fire Burst despejando el camino!
+El liderazgo es mi don.
+El daño crítico es mi especialidad.
+¡Caballo oscuro cabalgando a la batalla!
+¡Comanda tus fuerzas, destruye a tus enemigos!
+¡Fire Scream resuena en el campo de batalla!
+¡Señor de la oscuridad y el poder!
+Mis mascotas hacen el trabajo sucio.
+
+#CLASS_80,15
+¡Summoner invocando fuerzas antiguas!
+Mis invocaciones luchan a mi lado.
+¡Explosión de poder elemental!
+La magia fluye por mis venas.
+¡Tormenta de meteoros llegando!
+Maestría de hechizos al máximo.
+¡Magia antigua despierta!
+¡Chain lightning golpea a todos!
+¡Invocando las fuerzas de la naturaleza!
+Mi magia no conoce límites.
+
+#CLASS_96,15
+¡Rage Fighter desatando furia!
+¡Mis puños rompen armaduras!
+¡Maestría de armas en combate cercano!
+¡Dragon Roar sacudiendo la tierra!
+¡Phoenix shot ardiendo brillante!
+¡Especialista cuerpo a cuerpo listo!
+Experiencia en combate inigualable.
+¡Dragon Slayer en mis manos!
+¡Armas duales, daño doble!
+¡El espíritu luchador nunca muere!
+
+#CLASS_112,15
+¡Grow Lancer cargando hacia adelante!
+¡Mi lanza perfora todas las defensas!
+¡Spiral Slash devastando enemigos!
+El combate montado es mi arte.
+¡Dragon Spear desatada!
+¡Caballero del reino!
+¡Cargando con toda la fuerza!
+¡Golpe de lanza crítico!
+¡Dominio de caballería!
+Mi corcel y yo somos uno.
+
+; --- FRASES ESPECÍFICAS DE MAPA ---
+#MAP_0,20
+Lorencia, el corazón del reino.
+Los campos de entrenamiento siempre están ocupados.
+Lugar pacífico para comenzar tu viaje.
+La fuente trae recuerdos.
+Aquí es donde nacen las leyendas.
+Hogar dulce hogar en Lorencia.
+Los muros del castillo nos protegen.
+El mercado de Lorencia es el mejor.
+Tantos guerreros comenzando aquí.
+El inicio de cada aventura.
+
+#MAP_1,20
+Entrando al Dungeon... se debe respeto.
+El aire aquí abajo es pesado y antiguo.
+Resuenan ecos de batallas pasadas.
+Un paso en falso aquí podría ser el último.
+La luz del sol no llega a este lugar.
+Hay que mantenerse alerta en estos pasillos.
+Una energía oscura emana de las paredes.
+Este lugar ha reclamado muchos aventureros.
+La oscuridad aquí es casi tangible.
+Descendiendo a las profundidades de la tierra.
+
+#MAP_2,20
+Devias, tierra de oportunidades.
+Las minas guardan grandes tesoros.
+Territorio peligroso pero gratificante.
+Gigantes vagan por estas tierras.
+La plaza de Devias siempre está llena.
+Perfecto para entrenamiento de nivel medio.
+¡Cuidado con los PKs aquí!
+Ricos terrenos de caza en Devias.
+El puente conecta dos mundos.
+Devias nunca duerme.
+
+#MAP_3,20
+Noria, mi lugar favorito.
+La ciudad portuaria tiene su encanto.
+Brisa marina y aventura.
+Los monstruos aquí son duros.
+El mercado de Noria es único.
+Terrenos de entrenamiento costeros.
+El faro guía el camino.
+Marineros y guerreros se unen aquí.
+Puerta a mayores desafíos.
+La belleza de Noria no tiene igual.
+
+#MAP_4,20
+Lost Tower alcanzando el cielo.
+Cada piso trae nuevos desafíos.
+Escalando hacia la grandeza.
+Monstruos élite guardan estos niveles.
+La vista desde aquí es increíble.
+Lost Tower prueba tus límites.
+Estructura antigua llena de secretos.
+Pisos más altos, mayores recompensas.
+La cumbre es el objetivo final.
+Torre de batallas interminables.
+
+#MAP_7,20
+Atlans es peligroso, ten cuidado.
+Ciudad submarina de misterios.
+Los atlantes guardan su territorio.
+Respirar bajo el agua se siente extraño.
+Ruinas de civilización antigua.
+Te esperan desafíos de alto nivel.
+Atlans guarda objetos legendarios.
+Las profundidades ocultan gran poder.
+No es para los débiles de corazón.
+Tesoros sumergidos por doquier.
+
+#MAP_8,20
+El desierto de Tarkan es abrasador.
+Arena y monstruos por todas partes.
+Territorio del Lizard King.
+La supervivencia en el desierto es difícil.
+El oasis trae breve alivio.
+El calor de Tarkan es insoportable.
+Antigua civilización del desierto.
+Cuevas escondidas en las dunas.
+Los hombres lagarto patrullan estas arenas.
+Los guerreros del desierto prosperan aquí.
+
+#MAP_10,20
+Icarus volando alto.
+Reino celestial de oportunidades.
+Alas extendidas, volando libre.
+Las batallas aéreas son intensas.
+Icarus guarda tesoros especiales.
+Volando a través de las nubes.
+Maestría en navegación aérea.
+Fortaleza celestial a la vista.
+La vista de Icarus es impresionante.
+Dominio del cielo explorado.
+
+#MAP_30,20
+Kalima 1, puertas del infierno.
+Demonios acechan en cada esquina.
+Desafío de mazmorra cronometrada.
+Monstruos dorados para drops afortunados.
+Kalima prueba a tu party.
+¡Sobrevive al ataque!
+El mal antiguo reside aquí.
+El portal no durará para siempre.
+Kalima recompensa a los valientes.
+Fuerzas oscuras concentradas aquí.
+
+#MAP_34,20
+Aida, valle de pruebas.
+Centro de misiones para aventureros.
+La NPC Sophia nos guía.
+Cañón lleno de monstruos.
+Aida ofrece grandes misiones.
+Terrenos de entrenamiento de leyendas.
+Perfecto para caza en party.
+Los desafíos de Aida son justos.
+El valle resuena con gritos de batalla.
+Aida recompensa la persistencia.
+
+#MAP_37,20
+¡Fortaleza Crywolf bajo sitio!
+¡Defender el altar es crucial!
+¡Lobos atacando sin piedad!
+¡Balgass debe ser detenido!
+Recompensas por completar contrato.
+Defensa de fortaleza en acción.
+¡El evento de Crywolf es intenso!
+Protegiendo la estatua juntos.
+¡Invasión de lobos en marcha!
+¡Unidos defendemos Crywolf!
+
+#MAP_51,20
+Elbeland, tierra de gigantes.
+Monstruos de alto nivel deambulan aquí.
+Terrenos de caza élite.
+Los jefes de Elbeland son duros.
+Desafíos de territorio helado.
+Hielo y peligro combinados.
+Las recompensas de Elbeland son legendarias.
+Los gigantes guardan su tierra.
+Frío extremo, desafío extremo.
+Elbeland prueba a verdaderos guerreros.
+
+#MAP_63,20
+Raklion, guarida del dragón.
+Selupan espera retadores.
+¡Evento de invasión de dragones!
+¡Los huevos deben ser destruidos!
+Raklion es territorio de dragones.
+Se necesita preparación para la batalla del jefe.
+Escamas de dragón como recompensas.
+¡La horda de Raklion viene!
+Derrotar a Selupan requiere trabajo en equipo.
+¡Te espera el título de cazador de dragones!
+
+#MAP_79,20
+Kanturu, ruinas de poder.
+El jefe Nightmare aparece aquí.
+¡El evento de Kanturu es legendario!
+Reliquias antiguas descubiertas.
+La mano de Maya controla este reino.
+Refinería para mejoras de objetos.
+La torre de Kanturu se alza alta.
+¡El núcleo debe ser protegido!
+Evento élite para los mejores jugadores.
+Las recompensas de Kanturu son supremas.
+
+#MAP_80,20
+Mapa Silencioso, entrenamiento pacífico.
+Ubicación tranquila para farmear.
+Sin distracciones, solo farming.
+Joya escondida para subir nivel.
+Los monstruos reaparecen rápidamente.
+Eficiencia silenciosa en acción.
+Paraíso de entrenamiento en solitario.
+Lugar secreto descubierto.
+Farming de Zen optimizado.
+Pacífico pero productivo.
