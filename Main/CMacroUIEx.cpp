@@ -1177,13 +1177,13 @@ void CMacroUIEx::Load()
 
 	SetCompleteHook(0xE8, 0x007F76CD, &OffHelper);
 
-	if( gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4 )
+	if( gProtect.m_MainInfo.CustomInterfaceType == 1 || gProtect.m_MainInfo.CustomInterfaceType == 2 || gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4 )
 	{
 	    SetOp(0x007F65A6, RenderWindowsHelper, ASM::CALL);
 	    SetCompleteHook(0xE8, 0x007F65E6, &LoadWindowsNone_New);
 	    SetCompleteHook(0xE8, 0x007F6638, &LoadWindowsNone_New);
 	    SetCompleteHook(0xE8, 0x007F66A2, &LoadWindowsNone_New);
-    	SetCompleteHook(0xE8, 0x007F66FA, &LoadWindowsNone_New);
+   	SetCompleteHook(0xE8, 0x007F66FA, &LoadWindowsNone_New);
 	    SetRange(0x007F6753, 5, ASM::NOP);//title
 	    SetOp(0x0080C848, RenderWindowsHelperConfig, ASM::CALL);
 	    SetCompleteHook(0xE8, 0x0080C87C, &LoadWindowsNone_New);
