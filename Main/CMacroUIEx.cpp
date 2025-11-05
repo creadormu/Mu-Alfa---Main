@@ -346,32 +346,22 @@ void CMacroUIEx::RenderFrame(int *This)
 	gCMacroUIEx.DrawFrame(0xF3001, X + 135, Y, 186, 30, 502, 0, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
 	gCMacroUIEx.DrawFrame(0xF3001, X, Y, 232, 37, 270, 0, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
 
-	if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroLog, ""))
-		if(gProtect.m_MainInfo.CustomInterfaceType == 3)
-		{
-		    gCMacroUIEx.CustomList->onShow = !gCMacroUIEx.CustomList->onShow;
-		}
-		else
-		{
-		    if (gInterface.CheckMenuWindow())
-			{
-		        gInterface.CloseMenuWindow();
-	        }
-			else
-			{
-		        gInterface.OpenMenuWindow();
-	        }
-		}
-
-	gCMacroUIEx.Drawbutton(gCMacroUIEx.macroConfig, "");
-	gCMacroUIEx.Drawbutton(gCMacroUIEx.macroAuto, "");
-	gCMacroUIEx.macroAuto->data->state = pMUHelperStat;
-
-	if(gProtect.m_MainInfo.CustomInterfaceType == 3)
+	//-- New button system for interface types 3 and 4
+	if(gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4)
 	{
-	ConnectServer.currently_subcode = *(DWORD*)0x0986C128;
+		if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroLog, ""))
+		{
+			gCMacroUIEx.CustomList->onShow = !gCMacroUIEx.CustomList->onShow;
+		}
 
-	if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServer, " "))
+		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroConfig, "");
+		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroAuto, "");
+		gCMacroUIEx.macroAuto->data->state = pMUHelperStat;
+
+		//-- Server switch button (only for interface types 3 and 4)
+		ConnectServer.currently_subcode = *(DWORD*)0x0986C128;
+
+		if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServer, " "))
 	{
 		if (gCMacroUIEx.macroSwitchServer->data->state == 1)
 		{
@@ -489,10 +479,10 @@ void CMacroUIEx::RenderFrame(int *This)
 	}
 	}
 
-
-
-	if (gCMacroUIEx.macroAuto->data->state)
-		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroPauseAuto, "");
+		if (gCMacroUIEx.macroAuto->data->state)
+			gCMacroUIEx.Drawbutton(gCMacroUIEx.macroPauseAuto, "");
+	}
+	//-- End of interface type 3 and 4 specific rendering
 
 	//Mapa y Coordenadas
 
@@ -522,7 +512,9 @@ void CMacroUIEx::RenderFrame(int *This)
 	}
 //-------------------------------------------------------------------------------
 	
-//Botones
+//Botones - Old rendering system for interface types 1 and 2
+	if(gProtect.m_MainInfo.CustomInterfaceType == 1 || gProtect.m_MainInfo.CustomInterfaceType == 2)
+	{
 	renderMenu = 15.0f;
 	gInterface.DrawButtonRender(ButtonSettings, 156.0f + renderMenu, 7.0, 0, 0);
 	//-- Config
@@ -610,6 +602,7 @@ void CMacroUIEx::RenderFrame(int *This)
 	else
 	{
 		RenderBitmap(51553, X + 137.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
+	}
 	}
 //-------------------------------------------------------------------------------
 	pGLSwitch();
