@@ -346,153 +346,142 @@ void CMacroUIEx::RenderFrame(int *This)
 	gCMacroUIEx.DrawFrame(0xF3001, X + 135, Y, 186, 30, 502, 0, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
 	gCMacroUIEx.DrawFrame(0xF3001, X, Y, 232, 37, 270, 0, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
 
-	if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroLog, ""))
-		if(gProtect.m_MainInfo.CustomInterfaceType == 3)
+	//-- New button system for interface types 3 and 4
+	if(gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4)
+	{
+		if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroLog, ""))
 		{
-		    gCMacroUIEx.CustomList->onShow = !gCMacroUIEx.CustomList->onShow;
+			gCMacroUIEx.CustomList->onShow = !gCMacroUIEx.CustomList->onShow;
 		}
-		else
+
+		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroConfig, "");
+		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroAuto, "");
+		gCMacroUIEx.macroAuto->data->state = pMUHelperStat;
+
+		//-- Server switch button (only for interface types 3 and 4)
+		ConnectServer.currently_subcode = *(DWORD*)0x0986C128;
+
+		if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServer, " "))
 		{
-		    if (gInterface.CheckMenuWindow())
+			if (gCMacroUIEx.macroSwitchServer->data->state == 1)
 			{
-		        gInterface.CloseMenuWindow();
-	        }
-			else
-			{
-		        gInterface.OpenMenuWindow();
-	        }
-		}
-
-	gCMacroUIEx.Drawbutton(gCMacroUIEx.macroConfig, "");
-	gCMacroUIEx.Drawbutton(gCMacroUIEx.macroAuto, "");
-	gCMacroUIEx.macroAuto->data->state = pMUHelperStat;
-
-	if(gProtect.m_MainInfo.CustomInterfaceType == 3)
-	{
-	ConnectServer.currently_subcode = *(DWORD*)0x0986C128;
-
-	if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServer, " "))
-	{
-		if (gCMacroUIEx.macroSwitchServer->data->state == 1)
-		{
-			ConnectServer.ReqServerList(true);
-		}
-	}
-	if (ConnectServer.currently_subcode)
-	{
-		if (ConnectServer.SrvStat[ConnectServer.currently_subcode - 1].type == 0)
-			pSetTextColor(pTextThis(), 240, 50, 50, 255);
-		else if (ConnectServer.SrvStat[ConnectServer.currently_subcode - 1].type == 1)
-			pSetTextColor(pTextThis(), 50, 240, 50, 255);
-		else
-			pSetTextColor(pTextThis(), 160, 160, 160, 255);
-		wsprintf(Cord, "sub: %d", ConnectServer.currently_subcode);
-		pDrawText(pTextThis(), X + 17.5, Y + 3, Cord, 30, 0, (LPINT)0, 0);
-	}
-
-	if (gCMacroUIEx.macroSwitchServer->data->state == 1)
-	{
-		ConnectServer.ReqServerList(false);
-		gCMacroUIEx.DrawFrame(0xF3001, X + 7.5 , Y + 21.5, 198, 226, 1, 3, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
-		if (gCMacroUIEx.IsWorkZone(X + 7.5, Y + 21.5, 198 / 1.5, 226 / 1.5))
-		{
-			gCMacroUIEx.macroSwitchServerHoving = true;
-		}
-		else 
-		{
-			gCMacroUIEx.macroSwitchServerHoving = false;
-		}
-		pSetBackgroundTextColor(pTextThis(), 0, 0, 0, 0);
-		pSetTextColor(pTextThis(), 160, 160, 160, 255);
-		bool showToolTip = false;
-
-		for (char i = 0; i < ConnectServer.server_list_count; i++)
-		{
-			if (ConnectServer.currently_subcode - 1 != i)
-			{
-				if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerHover, X + 11, Y + 21.5 + 14.65 * i, ""))
-				{
-					if (!gCMacroUIEx.isSwitchServer && gCMacroUIEx.lastSwitch + DelaySwitchServer < GetTickCount())
-					{
-						SwitchServer.switchServer(ConnectServer.SrvStat[i].ServerCode);
-						*(DWORD*)0x0986C128 = ConnectServer.SrvStat[i].ServerCode + 1;
-						gCMacroUIEx.lastSwitch = GetTickCount();
-						gCMacroUIEx.macroSwitchServer->data->state = 0;
-					}
-				}
+				ConnectServer.ReqServerList(true);
 			}
-			else 
-			{
-				if (gCMacroUIEx.IsWorkZone(X + 11, Y + 21.5 + 14.65 * i, 110, 14))
-				{
-					showToolTip = true;
-				}
-			}
-			pSetBackgroundTextColor(pTextThis(), 0, 0, 0, 0);
-			if (ConnectServer.SrvStat[i].type == 0)
+		}
+		if (ConnectServer.currently_subcode)
+		{
+			if (ConnectServer.SrvStat[ConnectServer.currently_subcode - 1].type == 0)
 				pSetTextColor(pTextThis(), 240, 50, 50, 255);
-			else if (ConnectServer.SrvStat[i].type == 1)
+			else if (ConnectServer.SrvStat[ConnectServer.currently_subcode - 1].type == 1)
 				pSetTextColor(pTextThis(), 50, 240, 50, 255);
 			else
 				pSetTextColor(pTextThis(), 160, 160, 160, 255);
-			wsprintf(Cord, "sub: %d", ConnectServer.SrvStat[i].ServerCode + 1);
-			pDrawText(pTextThis(), X + 17.5, Y + 23.5 + 14.65 * i, Cord, 30, 0, (LPINT)0, 0);
-			pSetTextColor(pTextThis(), 120, 120, 120, 200);
-			//new
-			
-			char* ServerTypeName[] = 
-			{
-				"[Gold]","[Gold(PvP)]", "[NoN-PvP]", "[Normal]", "[Unknow]" 
-			};
-			if(ConnectServer.SrvStat[i].ServerCode >= 0 && ConnectServer.SrvStat[i].ServerCode <= 3)
-			{
-				pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[0], 30, 0, (LPINT)0, 0);
-			}
-			else if(ConnectServer.SrvStat[i].ServerCode == 4)
-			{
-			    pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[1], 30, 0, (LPINT)0, 0);
-			}
-			else if(ConnectServer.SrvStat[i].ServerCode >= 5 && ConnectServer.SrvStat[i].ServerCode <= 8)
-			{
-				pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[2], 30, 0, (LPINT)0, 0);
-			}
-			else if(ConnectServer.SrvStat[i].ServerCode >= 9 && ConnectServer.SrvStat[i].ServerCode <= 20)
-			{
-			    pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[3], 30, 0, (LPINT)0, 0);
-			}
-			else
-			{
-				pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[4], 30, 0, (LPINT)0, 0);
-			}
-			if (ConnectServer.SrvStat[i].UserTotal < 100){
-				pSetTextColor(pTextThis(), 50, 240, 50, 255);
-				wsprintf(Cord, "%d%%", ConnectServer.SrvStat[i].UserTotal);
-			}
-			else
-			{
-				pSetTextColor(pTextThis(), 240, 50, 50, 255);
-				wsprintf(Cord, "Full");
-			}
-			pDrawText(pTextThis(), X + 102.5, Y + 23.5 + 14.65 * i, Cord, 30, 4, (LPINT)0, 0);
+			wsprintf(Cord, "sub: %d", ConnectServer.currently_subcode);
+			pDrawText(pTextThis(), X + 17.5, Y + 3, Cord, 30, 0, (LPINT)0, 0);
 		}
-		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerSliderUp, "");
-		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerSliderDown, "");
 
-		if (showToolTip)
+		if (gCMacroUIEx.macroSwitchServer->data->state == 1)
 		{
-			textSize tS = gCMacroUIEx.getTextSize("El canal seleccionado actualmente");
-			gCMacroUIEx.DrawToolTipBG(pCursorX + 25, pCursorY, tS.resize_width + 10, tS.resize_height + 4);
+			ConnectServer.ReqServerList(false);
+			gCMacroUIEx.DrawFrame(0xF3001, X + 7.5 , Y + 21.5, 198, 226, 1, 3, 1024, 256, 1.5 / pWinWidthReal, 1.5 / pWinHeightReal);
+			if (gCMacroUIEx.IsWorkZone(X + 7.5, Y + 21.5, 198 / 1.5, 226 / 1.5))
+			{
+				gCMacroUIEx.macroSwitchServerHoving = true;
+			}
+			else 
+			{
+				gCMacroUIEx.macroSwitchServerHoving = false;
+			}
+			pSetBackgroundTextColor(pTextThis(), 0, 0, 0, 0);
 			pSetTextColor(pTextThis(), 160, 160, 160, 255);
+			bool showToolTip = false;
 
-			pDrawText(pTextThis(), pCursorX + 25, pCursorY + 4, "El canal seleccionado actualmente", tS.resize_width + 10, 0, (LPINT)3, 0);
+			for (char i = 0; i < ConnectServer.server_list_count; i++)
+			{
+				if (ConnectServer.currently_subcode - 1 != i)
+				{
+					if (gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerHover, X + 11, Y + 21.5 + 14.65 * i, ""))
+					{
+						if (!gCMacroUIEx.isSwitchServer && gCMacroUIEx.lastSwitch + DelaySwitchServer < GetTickCount())
+						{
+							SwitchServer.switchServer(ConnectServer.SrvStat[i].ServerCode);
+							*(DWORD*)0x0986C128 = ConnectServer.SrvStat[i].ServerCode + 1;
+							gCMacroUIEx.lastSwitch = GetTickCount();
+							gCMacroUIEx.macroSwitchServer->data->state = 0;
+						}
+					}
+				}
+				else 
+				{
+					if (gCMacroUIEx.IsWorkZone(X + 11, Y + 21.5 + 14.65 * i, 110, 14))
+					{
+						showToolTip = true;
+					}
+				}
+				pSetBackgroundTextColor(pTextThis(), 0, 0, 0, 0);
+				if (ConnectServer.SrvStat[i].type == 0)
+					pSetTextColor(pTextThis(), 240, 50, 50, 255);
+				else if (ConnectServer.SrvStat[i].type == 1)
+					pSetTextColor(pTextThis(), 50, 240, 50, 255);
+				else
+					pSetTextColor(pTextThis(), 160, 160, 160, 255);
+				wsprintf(Cord, "sub: %d", ConnectServer.SrvStat[i].ServerCode + 1);
+				pDrawText(pTextThis(), X + 17.5, Y + 23.5 + 14.65 * i, Cord, 30, 0, (LPINT)0, 0);
+				pSetTextColor(pTextThis(), 120, 120, 120, 200);
+				//new
+				
+				char* ServerTypeName[] = 
+				{
+					"[Gold]","[Gold(PvP)]", "[NoN-PvP]", "[Normal]", "[Unknow]" 
+				};
+				if(ConnectServer.SrvStat[i].ServerCode >= 0 && ConnectServer.SrvStat[i].ServerCode <= 3)
+				{
+					pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[0], 30, 0, (LPINT)0, 0);
+				}
+				else if(ConnectServer.SrvStat[i].ServerCode == 4)
+				{
+					pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[1], 30, 0, (LPINT)0, 0);
+				}
+				else if(ConnectServer.SrvStat[i].ServerCode >= 5 && ConnectServer.SrvStat[i].ServerCode <= 8)
+				{
+					pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[2], 30, 0, (LPINT)0, 0);
+				}
+				else if(ConnectServer.SrvStat[i].ServerCode >= 9 && ConnectServer.SrvStat[i].ServerCode <= 20)
+				{
+					pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[3], 30, 0, (LPINT)0, 0);
+				}
+				else
+				{
+					pDrawText(pTextThis(), X + 50, Y + 23.5 + 14.65 * i, ServerTypeName[4], 30, 0, (LPINT)0, 0);
+				}
+				if (ConnectServer.SrvStat[i].UserTotal < 100){
+					pSetTextColor(pTextThis(), 50, 240, 50, 255);
+					wsprintf(Cord, "%d%%", ConnectServer.SrvStat[i].UserTotal);
+				}
+				else
+				{
+					pSetTextColor(pTextThis(), 240, 50, 50, 255);
+					wsprintf(Cord, "Full");
+				}
+				pDrawText(pTextThis(), X + 102.5, Y + 23.5 + 14.65 * i, Cord, 30, 4, (LPINT)0, 0);
+			}
+			gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerSliderUp, "");
+			gCMacroUIEx.Drawbutton(gCMacroUIEx.macroSwitchServerSliderDown, "");
+
+			if (showToolTip)
+			{
+				textSize tS = gCMacroUIEx.getTextSize("El canal seleccionado actualmente");
+				gCMacroUIEx.DrawToolTipBG(pCursorX + 25, pCursorY, tS.resize_width + 10, tS.resize_height + 4);
+				pSetTextColor(pTextThis(), 160, 160, 160, 255);
+
+				pDrawText(pTextThis(), pCursorX + 25, pCursorY + 4, "El canal seleccionado actualmente", tS.resize_width + 10, 0, (LPINT)3, 0);
+			}
 		}
+
+		if (gCMacroUIEx.macroAuto->data->state)
+			gCMacroUIEx.Drawbutton(gCMacroUIEx.macroPauseAuto, "");
 	}
-	}
-
-
-
-	if (gCMacroUIEx.macroAuto->data->state)
-		gCMacroUIEx.Drawbutton(gCMacroUIEx.macroPauseAuto, "");
+	//-- End of interface type 3 and 4 specific rendering
 
 	//Mapa y Coordenadas
 
@@ -522,7 +511,9 @@ void CMacroUIEx::RenderFrame(int *This)
 	}
 //-------------------------------------------------------------------------------
 	
-//Botones
+//Botones - Old rendering system for interface types 1 and 2
+	if(gProtect.m_MainInfo.CustomInterfaceType == 1 || gProtect.m_MainInfo.CustomInterfaceType == 2)
+	{
 	renderMenu = 15.0f;
 	gInterface.DrawButtonRender(ButtonSettings, 156.0f + renderMenu, 7.0, 0, 0);
 	//-- Config
@@ -610,6 +601,7 @@ void CMacroUIEx::RenderFrame(int *This)
 	else
 	{
 		RenderBitmap(51553, X + 137.0f + renderMenu, Y + 9.0, 19, 19, 0.0, 0.0, 0.878, 0.225, 1, 1, 0.0);
+	}
 	}
 //-------------------------------------------------------------------------------
 	pGLSwitch();
@@ -1177,13 +1169,13 @@ void CMacroUIEx::Load()
 
 	SetCompleteHook(0xE8, 0x007F76CD, &OffHelper);
 
-	if( gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4 )
+	if( gProtect.m_MainInfo.CustomInterfaceType == 1 || gProtect.m_MainInfo.CustomInterfaceType == 2 || gProtect.m_MainInfo.CustomInterfaceType == 3 || gProtect.m_MainInfo.CustomInterfaceType == 4 )
 	{
 	    SetOp(0x007F65A6, RenderWindowsHelper, ASM::CALL);
 	    SetCompleteHook(0xE8, 0x007F65E6, &LoadWindowsNone_New);
 	    SetCompleteHook(0xE8, 0x007F6638, &LoadWindowsNone_New);
 	    SetCompleteHook(0xE8, 0x007F66A2, &LoadWindowsNone_New);
-    	SetCompleteHook(0xE8, 0x007F66FA, &LoadWindowsNone_New);
+   	SetCompleteHook(0xE8, 0x007F66FA, &LoadWindowsNone_New);
 	    SetRange(0x007F6753, 5, ASM::NOP);//title
 	    SetOp(0x0080C848, RenderWindowsHelperConfig, ASM::CALL);
 	    SetCompleteHook(0xE8, 0x0080C87C, &LoadWindowsNone_New);
