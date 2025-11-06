@@ -1,0 +1,443 @@
+; Spanish Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Maria
+Ana
+Sofia
+Lucia
+Elena
+Paula
+Laura
+Diana
+Rosa
+Clara
+Pilar
+Rocio
+Julia
+Marta
+Sara
+Carla
+Alicia
+Lidia
+Nuria
+Sonia
+Celia
+Irene
+Silvia
+Raquel
+Belen
+Luisa
+Dolores
+Ester
+Olga
+Vera
+Iris
+
+; German Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Anna
+Emma
+Lena
+Marie
+Lisa
+Nina
+Greta
+Petra
+Katja
+Heike
+Helga
+Erika
+Ilse
+Ruth
+Inge
+Elke
+Britta
+Monika
+Sonja
+Karin
+Birgit
+Gisela
+Astrid
+Edith
+Beate
+Renate
+Ursula
+Luisa
+Hanna
+Bella
+Frida
+
+; Italian Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Maria
+Anna
+Laura
+Sara
+Paola
+Carla
+Giulia
+Elena
+Rosa
+Lucia
+Marta
+Lidia
+Diana
+Rita
+Gina
+Vera
+Ada
+Lara
+Giada
+Nadia
+Miriam
+Serena
+Federica
+Silvia
+Alice
+Ilaria
+Chiara
+Luisa
+Elisa
+Eleonora
+Sofia
+
+; Korean Female Names (Hangul)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+서연
+민서
+지우
+서윤
+지안
+하은
+윤서
+채원
+다은
+수아
+소율
+지유
+예은
+예린
+수빈
+예원
+채은
+가은
+하윤
+지민
+소윤
+은서
+유나
+세아
+나은
+유진
+시은
+수연
+아인
+서현
+예나
+
+; Chinese Female Names (Simplified Chinese)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+梓涵
+雨萱
+诗涵
+欣怡
+可馨
+静怡
+佳怡
+思涵
+梦琪
+雨薇
+芷涵
+子涵
+紫涵
+晨曦
+梦洁
+美琳
+思琪
+雅静
+婉婷
+雨婷
+诗琪
+欣妍
+语嫣
+梦瑶
+嘉怡
+雨琪
+天瑜
+诗茵
+雅馨
+欣悦
+佳琪
+
+; Japanese Female Names (Kanji/Hiragana)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+さくら
+あやか
+ゆい
+めい
+りん
+みお
+ゆな
+あおい
+さな
+ひな
+かな
+まい
+あい
+えみ
+なな
+ゆみ
+のぞみ
+みき
+れな
+あみ
+さき
+まお
+なつみ
+さやか
+ゆか
+あかり
+ひかり
+ゆり
+りこ
+ことね
+みく
+
+; Vietnamese Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Linh
+Hương
+Hằng
+Trang
+Ngọc
+Hạnh
+Thảo
+Huyền
+Phương
+Quỳnh
+Thư
+Mai
+Tú
+Chi
+Lan
+Anh
+Hà
+Thu
+Hoa
+Tâm
+Diệu
+Vy
+Yến
+Uyên
+Tuyết
+Trâm
+Vân
+Thanh
+Châu
+Bích
+Dung
+
+; English Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Emma
+Lily
+Lucy
+Grace
+Chloe
+Alice
+Amy
+Ruby
+Rose
+Kate
+Anna
+Sarah
+Jane
+Mary
+Emily
+Ella
+Mia
+Zoe
+Leah
+Maya
+Jade
+Ava
+Isla
+Skye
+Eva
+Beth
+Sara
+Nora
+Ivy
+Eden
+Lola
+
+; Portuguese Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Maria
+Ana
+Sofia
+Laura
+Beatriz
+Joana
+Inês
+Rita
+Alice
+Lúcia
+Clara
+Diana
+Sara
+Helena
+Júlia
+Luísa
+Vitória
+Marta
+Paula
+Bianca
+Catarina
+Leonor
+Lara
+Mariana
+Teresa
+Raquel
+Lívia
+Célia
+Vera
+Ester
+Gisela
+
+; Philippine/Filipino Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Maria
+Rosa
+Ana
+Liza
+Angel
+Reyna
+Grace
+Jenna
+Lea
+Sarah
+Jane
+Rica
+Ruby
+Joana
+Diana
+Rita
+Elena
+Carla
+Sofia
+Laura
+Paula
+Marta
+Katrina
+Celeste
+Joyce
+Faith
+Hope
+Mary
+Emma
+Gina
+Lisa
+
+; Russian Female Names (Cyrillic)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Анна
+Мария
+Ольга
+Елена
+Ирина
+Наталья
+Юлия
+Дарья
+София
+Вера
+Нина
+Лариса
+Алина
+Диана
+Полина
+Ксения
+Елизавета
+Ника
+Майя
+Лилия
+Марина
+Алла
+Люба
+Таня
+Катя
+Валерия
+Лена
+Оксана
+Вика
+Рита
+Инна
+
+; Turkish Female Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Ayşe
+Fatma
+Zeynep
+Elif
+Emine
+Esra
+Merve
+Seda
+Deniz
+Ebru
+Gül
+Selin
+Ece
+Asya
+Ceren
+Dilara
+Yasemin
+İrem
+Burcu
+Tuğba
+Sibel
+Derya
+Özge
+Ecem
+Nur
+Serap
+Sevgi
+Gizem
+Hülya
+Şule
+Pınar
