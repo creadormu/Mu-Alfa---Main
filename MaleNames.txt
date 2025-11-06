@@ -1,0 +1,443 @@
+; Spanish Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Juan
+Pedro
+Luis
+Raul
+Hugo
+Jose
+Jesus
+Mateo
+Tomas
+Lucas
+Mario
+Pablo
+Diego
+Marco
+Jorge
+Angel
+Oscar
+Felix
+Ramon
+David
+Carlos
+Julio
+Leon
+Abel
+Ruben
+Ivan
+Cesar
+Alejo
+Bruno
+Blas
+Elias
+
+; German Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Hans
+Karl
+Paul
+Kurt
+Otto
+Ernst
+Heinz
+Franz
+Klaus
+Horst
+Jürgen
+Bernd
+Helge
+Gerd
+Wolf
+Uwe
+Olaf
+Dirk
+Lars
+Erik
+Finn
+Nils
+Ingo
+Ralf
+Lutz
+Rolf
+Rene
+Emil
+Arne
+Fred
+Hugo
+
+; Italian Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Luca
+Marco
+Paolo
+Mario
+Carlo
+Bruno
+Piero
+Dino
+Enzo
+Rico
+Vito
+Renzo
+Guido
+Fausto
+Dante
+Flavio
+Fabio
+Rocco
+Tito
+Aldo
+Nino
+Gino
+Remo
+Ivano
+Mirko
+Lauro
+Elio
+Otello
+Mino
+Silvio
+Sandro
+
+; Korean Male Names (Hangul)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+민준
+서준
+예준
+도윤
+주원
+하준
+시우
+지호
+지훈
+준서
+준우
+현우
+도현
+건우
+우진
+선우
+서진
+유준
+정우
+민재
+시윤
+지우
+승우
+승현
+연우
+유찬
+현준
+지안
+태윤
+재윤
+재민
+
+; Chinese Male Names (Simplified Chinese)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+明轩
+浩宇
+子轩
+宇轩
+博文
+天宇
+俊杰
+梓豪
+俊熙
+雨泽
+皓轩
+宇航
+博涛
+思源
+文博
+睿渊
+振宇
+嘉懿
+煜祺
+瑞霖
+昊天
+立诚
+天翊
+智渊
+明哲
+烨磊
+鹏涛
+炎彬
+建辉
+弘文
+泽洋
+
+; Japanese Male Names (Kanji/Hiragana)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+たけし
+ひろし
+まさる
+かずお
+たつや
+けんじ
+ゆうき
+だいき
+そうた
+はると
+ゆうと
+りょう
+しゅん
+れん
+かい
+あおい
+そら
+ゆうま
+りく
+こうき
+しょう
+ゆう
+けん
+そう
+りん
+じん
+とう
+しん
+げん
+らい
+あき
+
+; Vietnamese Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Minh
+Tuấn
+Hùng
+Long
+Cường
+Khôi
+Quân
+Hải
+Đức
+Kiên
+Hoàng
+Bình
+Phúc
+Thịnh
+Trung
+Khang
+Nhật
+Thành
+Toàn
+Dũng
+Phong
+Bảo
+Thiên
+Khải
+Tâm
+Tài
+An
+Vinh
+Ngọc
+Lâm
+Nam
+
+; English Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+John
+Paul
+Mark
+Luke
+Adam
+Ryan
+Jack
+James
+Alex
+Owen
+Noah
+Liam
+Evan
+Cole
+Jake
+Eric
+Sean
+Kyle
+Carl
+Dean
+Joel
+Jude
+Seth
+Ross
+Drew
+Chad
+Brad
+Todd
+Troy
+Wade
+Kent
+
+; Portuguese Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+João
+José
+Pedro
+Paulo
+André
+Bruno
+Lucas
+Diego
+Tiago
+Vitor
+Rui
+Hugo
+Nuno
+Mário
+Davi
+Igor
+Caio
+Enzo
+Kauê
+Léo
+Raul
+Yuri
+Kaio
+Dário
+Fábio
+Túlio
+Lúcio
+Dinis
+Abel
+César
+Luís
+
+; Philippine/Filipino Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Jose
+Juan
+Pedro
+Luis
+Mario
+Paolo
+Carlo
+Angel
+Raul
+Marco
+Diego
+Elmer
+Jaime
+Rico
+Arnel
+Noel
+Rodel
+Jomar
+Romel
+Ramon
+Oscar
+Felix
+Edgar
+Romeo
+Dante
+Erwin
+Brian
+Ryan
+Mark
+John
+Kevin
+
+; Russian Male Names (Cyrillic)
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Иван
+Пётр
+Павел
+Олег
+Юрий
+Игорь
+Антон
+Борис
+Роман
+Артём
+Илья
+Вадим
+Глеб
+Фёдор
+Егор
+Денис
+Кирилл
+Семён
+Лев
+Макар
+Тимур
+Марк
+Захар
+Савва
+Давид
+Филипп
+Лука
+Матвей
+Демид
+Тимофей
+Никита
+
+; Turkish Male Names
+; One name per line
+; Lines starting with ; or # are comments
+; Minimum characters: 4 and Maximum: 5
+
+Ahmet
+Mehmet
+Emre
+Murat
+Deniz
+Kemal
+Berat
+Berk
+Arda
+Kaan
+Emir
+Enes
+Onur
+Eren
+Umut
+Barış
+Burak
+Serkan
+Hakan
+Oğuz
+Yusuf
+İsmail
+Cemal
+Kerem
+Selim
+Halil
+Temel
+İhsan
+Recep
+Orhan
+Şahin
